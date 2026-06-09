@@ -4,7 +4,7 @@ package helo
 import "net/http"
 
 // DefaultBaseURL is the API endpoint used unless overridden via WithBaseURL.
-const DefaultBaseURL = "http://localhost:8002/"
+const DefaultBaseURL = "https://api.helohq.com"
 
 // Helo is the entry-point client for the SDK.
 type Helo struct {
