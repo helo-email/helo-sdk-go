@@ -34,12 +34,12 @@ func WithHTTPClient(httpClient *http.Client) HeloOption {
 }
 
 // NewHelo creates a new Helo client.
-func NewHelo(accessToken string, opts ...HeloOption) *Helo {
+func NewHelo(apiKey string, opts ...HeloOption) *Helo {
 	c := &Helo{
 		client: &Client{
-			BaseURL:     DefaultBaseURL,
-			AccessToken: accessToken,
-			HTTPClient:  http.DefaultClient,
+			BaseURL:    DefaultBaseURL,
+			APIKey:     apiKey,
+			HTTPClient: http.DefaultClient,
 		},
 	}
 

@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.ChannelsListParams{
@@ -68,7 +68,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.CreateChannelRequest{
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	result, err := client.Channels.Retrieve(ctx, "550e8400-e29b-41d4-a716-446655440000")
@@ -136,7 +136,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.UpdateChannelRequest{
@@ -172,7 +172,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	if err := client.Channels.Delete(ctx, "550e8400-e29b-41d4-a716-446655440000"); err != nil {

@@ -98,22 +98,6 @@ func AllDnsRecordTypeValues() []DnsRecordType {
 	}
 }
 
-// DeliveryType1 is a string-based enum.
-type DeliveryType1 string
-
-const (
-	DeliveryType1Live    DeliveryType1 = "live"
-	DeliveryType1Sandbox DeliveryType1 = "sandbox"
-)
-
-// AllDeliveryType1Values returns all valid DeliveryType1 values.
-func AllDeliveryType1Values() []DeliveryType1 {
-	return []DeliveryType1{
-		DeliveryType1Live,
-		DeliveryType1Sandbox,
-	}
-}
-
 // BroadcastStatus is a string-based enum.
 type BroadcastStatus string
 

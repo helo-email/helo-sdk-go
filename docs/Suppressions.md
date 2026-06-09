@@ -27,7 +27,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.SuppressionsListParams{
@@ -67,7 +67,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.CreateSuppressionsRequest{
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.RemoveSuppressionsRequest{

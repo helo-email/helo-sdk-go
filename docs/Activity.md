@@ -28,7 +28,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.ActivityListEventsParams{
@@ -74,7 +74,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.ActivityListMessagesParams{
@@ -118,7 +118,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	result, err := client.Activity.RetrieveMessage(ctx, "550e8400-e29b-41d4-a716-446655440000")

@@ -28,7 +28,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.BroadcastsListParams{
@@ -67,7 +67,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	result, err := client.Broadcasts.Retrieve(ctx, "550e8400-e29b-41d4-a716-446655440000")
@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	result, err := client.Broadcasts.ListFailures(ctx, "550e8400-e29b-41d4-a716-446655440000")
@@ -131,7 +131,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	result, err := client.Broadcasts.ListSuppressions(ctx, "550e8400-e29b-41d4-a716-446655440000")

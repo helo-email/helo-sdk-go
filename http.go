@@ -13,9 +13,9 @@ import (
 
 // Client is the HTTP client used by all resource services.
 type Client struct {
-	BaseURL     string
-	AccessToken string
-	HTTPClient  *http.Client
+	BaseURL    string
+	APIKey     string
+	HTTPClient *http.Client
 }
 
 // requestOptions carries optional body and query parameters for a single call.
@@ -86,8 +86,8 @@ func (c *Client) request(ctx context.Context, method, path string, out any, opts
 	}
 
 	req.Header.Set("Accept", "application/json")
-	if c.AccessToken != "" {
-		req.Header.Set("Authorization", "Bearer "+c.AccessToken)
+	if c.APIKey != "" {
+		req.Header.Set("Authorization", "Bearer "+c.APIKey)
 	}
 	if options.body != nil {
 		req.Header.Set("Content-Type", "application/json")

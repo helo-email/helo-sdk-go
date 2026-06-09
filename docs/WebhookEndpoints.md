@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.WebhookEndpointsListParams{
@@ -67,7 +67,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.CreateWebhookEndpointRequest{
@@ -105,7 +105,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	result, err := client.WebhookEndpoints.Retrieve(ctx, "550e8400-e29b-41d4-a716-446655440000")
@@ -137,7 +137,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	params := &helo.UpdateWebhookEndpointRequest{
@@ -175,7 +175,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	if err := client.WebhookEndpoints.Delete(ctx, "550e8400-e29b-41d4-a716-446655440000"); err != nil {
@@ -205,7 +205,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 	ctx := context.Background()
 
 	result, err := client.WebhookEndpoints.RegenerateSigningKey(ctx, "550e8400-e29b-41d4-a716-446655440000")

@@ -22,7 +22,7 @@ import (
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_ACCESS_TOKEN")
+	client := helo.NewHelo("YOUR_API_KEY")
 
 	ctx := context.Background()
 	result, err := client.Channels.List(ctx, nil)

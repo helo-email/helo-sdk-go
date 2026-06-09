@@ -39,12 +39,12 @@ type CreateChannelTracking struct {
 	Opens bool `json:"opens,omitempty"`
 }
 
-// ValidationError is a generated schema type.
+// ValidationError A single field validation error.
 type ValidationError struct {
 	Message string `json:"message"`
 }
 
-// ErrorResponse is a generated schema type.
+// ErrorResponse Standard error response body.
 type ErrorResponse struct {
 	Type      string         `json:"type,omitempty"`
 	Title     string         `json:"title,omitempty"`
@@ -75,8 +75,8 @@ type UpdateChannelTracking struct {
 	Opens bool `json:"opens,omitempty"`
 }
 
-// MailAddress is a generated schema type.
-type MailAddress struct {
+// ActivityMailAddress is a generated schema type.
+type ActivityMailAddress struct {
 	Email string `json:"email"`
 	Name  string `json:"name,omitempty"`
 }
@@ -133,11 +133,11 @@ type MessageDetailsResponse struct {
 	DeliveryType string                             `json:"deliveryType"`
 	Status       string                             `json:"status"`
 	Subject      string                             `json:"subject"`
-	From         MailAddress                        `json:"from"`
-	To           []MailAddress                      `json:"to"`
-	Cc           []MailAddress                      `json:"cc,omitempty"`
-	Bcc          []MailAddress                      `json:"bcc,omitempty"`
-	ReplyTo      []MailAddress                      `json:"replyTo,omitempty"`
+	From         ActivityMailAddress                `json:"from"`
+	To           []ActivityMailAddress              `json:"to"`
+	Cc           []ActivityMailAddress              `json:"cc,omitempty"`
+	Bcc          []ActivityMailAddress              `json:"bcc,omitempty"`
+	ReplyTo      []ActivityMailAddress              `json:"replyTo,omitempty"`
 	Text         string                             `json:"text,omitempty"`
 	Html         string                             `json:"html,omitempty"`
 	Body         string                             `json:"body,omitempty"`
@@ -174,10 +174,10 @@ type DnsRecordsResponse struct {
 
 // DomainChannelResponse is a generated schema type.
 type DomainChannelResponse struct {
-	ID           string        `json:"id"`
-	Name         string        `json:"name"`
-	DeliveryType DeliveryType1 `json:"deliveryType"`
-	Deleted      bool          `json:"deleted,omitempty"`
+	ID           string       `json:"id"`
+	Name         string       `json:"name"`
+	DeliveryType DeliveryType `json:"deliveryType"`
+	Deleted      bool         `json:"deleted,omitempty"`
 }
 
 // DomainResponse is a generated schema type.
@@ -210,8 +210,8 @@ type UpdateDomainRequest struct {
 	ChannelIds []string `json:"channelIds,omitempty"`
 }
 
-// MailAddress1 is a generated schema type.
-type MailAddress1 struct {
+// MailAddress is a generated schema type.
+type MailAddress struct {
 	Email string `json:"email"`
 	Name  string `json:"name,omitempty"`
 }
@@ -227,8 +227,8 @@ type Attachment struct {
 
 // SendBroadcastRequest is a generated schema type.
 type SendBroadcastRequest struct {
-	From        MailAddress1                  `json:"from"`
-	ReplyTo     []MailAddress1                `json:"replyTo,omitempty"`
+	From        MailAddress                   `json:"from"`
+	ReplyTo     []MailAddress                 `json:"replyTo,omitempty"`
 	Template    SendBroadcastRequestTemplate  `json:"template"`
 	Tracking    SendBroadcastRequestTracking  `json:"tracking,omitempty"`
 	Attachments []Attachment                  `json:"attachments,omitempty"`
@@ -246,11 +246,11 @@ type SendBroadcastResponse struct {
 
 // SendMessageRequest is a generated schema type.
 type SendMessageRequest struct {
-	From        MailAddress1               `json:"from"`
-	To          []MailAddress1             `json:"to"`
-	Cc          []MailAddress1             `json:"cc,omitempty"`
-	Bcc         []MailAddress1             `json:"bcc,omitempty"`
-	ReplyTo     []MailAddress1             `json:"replyTo,omitempty"`
+	From        MailAddress                `json:"from"`
+	To          []MailAddress              `json:"to"`
+	Cc          []MailAddress              `json:"cc,omitempty"`
+	Bcc         []MailAddress              `json:"bcc,omitempty"`
+	ReplyTo     []MailAddress              `json:"replyTo,omitempty"`
 	Subject     string                     `json:"subject,omitempty"`
 	Html        string                     `json:"html,omitempty"`
 	Text        string                     `json:"text,omitempty"`
@@ -317,8 +317,8 @@ type BroadcastDetailsResponse struct {
 
 // BroadcastContent is a generated schema type.
 type BroadcastContent struct {
-	From        MailAddress1                 `json:"from,omitempty"`
-	ReplyTo     []MailAddress1               `json:"replyTo,omitempty"`
+	From        MailAddress                  `json:"from,omitempty"`
+	ReplyTo     []MailAddress                `json:"replyTo,omitempty"`
 	Template    BroadcastContentTemplate     `json:"template,omitempty"`
 	Attachments []BroadcastContentAttachment `json:"attachments,omitempty"`
 	Tags        []string                     `json:"tags,omitempty"`
@@ -353,9 +353,9 @@ type BroadcastFailureResponse struct {
 
 // RecipientHeaders is a generated schema type.
 type RecipientHeaders struct {
-	To  []MailAddress1 `json:"to"`
-	Cc  []MailAddress1 `json:"cc,omitempty"`
-	Bcc []MailAddress1 `json:"bcc,omitempty"`
+	To  []MailAddress `json:"to"`
+	Cc  []MailAddress `json:"cc,omitempty"`
+	Bcc []MailAddress `json:"bcc,omitempty"`
 }
 
 // PaginatedResponseOfBroadcast is a generated schema type.
@@ -454,7 +454,7 @@ type RemoveSuppressionResult struct {
 	Message string `json:"message,omitempty"`
 }
 
-// CreateWebhookEndpointRequest is a generated schema type.
+// CreateWebhookEndpointRequest Request body for creating a new webhook endpoint.
 type CreateWebhookEndpointRequest struct {
 	URL               string          `json:"url"`
 	Events            []WebhookEvent  `json:"events"`
@@ -463,19 +463,19 @@ type CreateWebhookEndpointRequest struct {
 	Enabled           bool            `json:"enabled,omitempty"`
 }
 
-// WebhookHeader is a generated schema type.
+// WebhookHeader A custom HTTP header to include in webhook deliveries.
 type WebhookHeader struct {
 	Name  string `json:"name"`
 	Value string `json:"value"`
 }
 
-// PaginationResultOfWebhookEndpointResponse is a generated schema type.
+// PaginationResultOfWebhookEndpointResponse Paginated list of webhook endpoints.
 type PaginationResultOfWebhookEndpointResponse struct {
 	Results    []WebhookEndpointResponse `json:"results"`
 	TotalCount int                       `json:"totalCount"`
 }
 
-// UpdateWebhookEndpointRequest is a generated schema type.
+// UpdateWebhookEndpointRequest Request body for updating a webhook endpoint. Only provided fields are changed.
 type UpdateWebhookEndpointRequest struct {
 	URL               string          `json:"url,omitempty"`
 	Events            []WebhookEvent  `json:"events,omitempty"`
@@ -484,7 +484,7 @@ type UpdateWebhookEndpointRequest struct {
 	Enabled           bool            `json:"enabled,omitempty"`
 }
 
-// WebhookEndpointResponse is a generated schema type.
+// WebhookEndpointResponse Webhook endpoint configuration.
 type WebhookEndpointResponse struct {
 	ID                string          `json:"id,omitempty"`
 	ChannelID         string          `json:"channelId,omitempty"`
@@ -518,7 +518,7 @@ type MessageDetailsResponseEvent struct {
 
 // SendBroadcastRequestTemplate is an inline schema extracted from its parent type.
 type SendBroadcastRequestTemplate struct {
-	Subject      string         `json:"subject,omitempty"`
+	Subject      string         `json:"subject"`
 	Html         string         `json:"html,omitempty"`
 	Text         string         `json:"text,omitempty"`
 	InlineStyles bool           `json:"inlineStyles,omitempty"`
@@ -533,9 +533,9 @@ type SendBroadcastRequestTracking struct {
 
 // SendBroadcastRequestMessage is an inline schema extracted from its parent type.
 type SendBroadcastRequestMessage struct {
-	To       []MailAddress1 `json:"to"`
-	Cc       []MailAddress1 `json:"cc,omitempty"`
-	Bcc      []MailAddress1 `json:"bcc,omitempty"`
+	To       []MailAddress  `json:"to"`
+	Cc       []MailAddress  `json:"cc,omitempty"`
+	Bcc      []MailAddress  `json:"bcc,omitempty"`
 	Tags     []string       `json:"tags,omitempty"`
 	Headers  map[string]any `json:"headers,omitempty"`
 	Metadata map[string]any `json:"metadata,omitempty"`
