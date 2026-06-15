@@ -187,7 +187,7 @@ func main() {
 
 ## RegenerateSigningKey
 
-> RegenerateSigningKey(ctx, id, ) (*WebhookEndpointResponse, error)
+> RegenerateSigningKey(ctx, id) (*WebhookEndpointResponse, error)
 
 Regenerate webhook signing key
 

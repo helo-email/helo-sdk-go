@@ -19,6 +19,12 @@ func TestSending_Transactional(t *testing.T) {
 		if !strings.HasPrefix(r.URL.Path, "/send/transactional") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/send/transactional")
 		}
+		if got, want := r.Header.Get("X-Helo-Channel-Id"), "550e8400-e29b-41d4-a716-446655440000"; got != want {
+			t.Errorf("header X-Helo-Channel-Id = %q, want %q", got, want)
+		}
+		if got, want := r.Header.Get("X-Helo-Idempotency-Key"), "example"; got != want {
+			t.Errorf("header X-Helo-Idempotency-Key = %q, want %q", got, want)
+		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{}`))
@@ -33,7 +39,11 @@ func TestSending_Transactional(t *testing.T) {
 		Text:    "test-text",
 		Tags:    []string{"example1", "example2"},
 	}
-	result, err := client.Sending.Transactional(context.Background(), params)
+	opts := &SendingTransactionalOptions{
+		ChannelID:      "550e8400-e29b-41d4-a716-446655440000",
+		IdempotencyKey: "example",
+	}
+	result, err := client.Sending.Transactional(context.Background(), params, opts)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -53,6 +63,12 @@ func TestSending_TransactionalBatch(t *testing.T) {
 		if !strings.HasPrefix(r.URL.Path, "/send/transactional/batch") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/send/transactional/batch")
 		}
+		if got, want := r.Header.Get("X-Helo-Channel-Id"), "550e8400-e29b-41d4-a716-446655440000"; got != want {
+			t.Errorf("header X-Helo-Channel-Id = %q, want %q", got, want)
+		}
+		if got, want := r.Header.Get("X-Helo-Idempotency-Key"), "example"; got != want {
+			t.Errorf("header X-Helo-Idempotency-Key = %q, want %q", got, want)
+		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{}`))
@@ -62,7 +78,11 @@ func TestSending_TransactionalBatch(t *testing.T) {
 	client := NewHelo("test-token-123", WithBaseURL(server.URL))
 
 	params := &SendMessageBatchRequest{}
-	result, err := client.Sending.TransactionalBatch(context.Background(), params)
+	opts := &SendingTransactionalBatchOptions{
+		ChannelID:      "550e8400-e29b-41d4-a716-446655440000",
+		IdempotencyKey: "example",
+	}
+	result, err := client.Sending.TransactionalBatch(context.Background(), params, opts)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -82,6 +102,12 @@ func TestSending_Broadcast(t *testing.T) {
 		if !strings.HasPrefix(r.URL.Path, "/send/broadcast") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/send/broadcast")
 		}
+		if got, want := r.Header.Get("X-Helo-Channel-Id"), "550e8400-e29b-41d4-a716-446655440000"; got != want {
+			t.Errorf("header X-Helo-Channel-Id = %q, want %q", got, want)
+		}
+		if got, want := r.Header.Get("X-Helo-Idempotency-Key"), "example"; got != want {
+			t.Errorf("header X-Helo-Idempotency-Key = %q, want %q", got, want)
+		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{}`))
@@ -93,7 +119,11 @@ func TestSending_Broadcast(t *testing.T) {
 	params := &SendBroadcastRequest{
 		Tags: []string{"example1", "example2"},
 	}
-	result, err := client.Sending.Broadcast(context.Background(), params)
+	opts := &SendingBroadcastOptions{
+		ChannelID:      "550e8400-e29b-41d4-a716-446655440000",
+		IdempotencyKey: "example",
+	}
+	result, err := client.Sending.Broadcast(context.Background(), params, opts)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -113,6 +143,12 @@ func TestSending_BroadcastMessage(t *testing.T) {
 		if !strings.HasPrefix(r.URL.Path, "/send/broadcast/message") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/send/broadcast/message")
 		}
+		if got, want := r.Header.Get("X-Helo-Channel-Id"), "550e8400-e29b-41d4-a716-446655440000"; got != want {
+			t.Errorf("header X-Helo-Channel-Id = %q, want %q", got, want)
+		}
+		if got, want := r.Header.Get("X-Helo-Idempotency-Key"), "example"; got != want {
+			t.Errorf("header X-Helo-Idempotency-Key = %q, want %q", got, want)
+		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{}`))
@@ -127,7 +163,11 @@ func TestSending_BroadcastMessage(t *testing.T) {
 		Text:    "test-text",
 		Tags:    []string{"example1", "example2"},
 	}
-	result, err := client.Sending.BroadcastMessage(context.Background(), params)
+	opts := &SendingBroadcastMessageOptions{
+		ChannelID:      "550e8400-e29b-41d4-a716-446655440000",
+		IdempotencyKey: "example",
+	}
+	result, err := client.Sending.BroadcastMessage(context.Background(), params, opts)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}

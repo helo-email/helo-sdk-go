@@ -10,7 +10,7 @@
 
 ## Transactional
 
-> Transactional(ctx, params) (*SendMessageAcceptedResponse, error)
+> Transactional(ctx, params, opts) (*SendMessageAcceptedResponse, error)
 
 Send a transactional email
 
@@ -37,7 +37,11 @@ func main() {
 		Text: "test-text",
 		Tags: []string{"example1", "example2"},
 	}
-	result, err := client.Sending.Transactional(ctx, params)
+	opts := &helo.SendingTransactionalOptions{
+		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
+		IdempotencyKey: "example",
+	}
+	result, err := client.Sending.Transactional(ctx, params, opts)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -48,7 +52,7 @@ func main() {
 
 ## TransactionalBatch
 
-> TransactionalBatch(ctx, params) (*SendMessageBatchResponse, error)
+> TransactionalBatch(ctx, params, opts) (*SendMessageBatchResponse, error)
 
 Send transactional emails in batch
 
@@ -71,7 +75,11 @@ func main() {
 
 	params := &helo.SendMessageBatchRequest{
 	}
-	result, err := client.Sending.TransactionalBatch(ctx, params)
+	opts := &helo.SendingTransactionalBatchOptions{
+		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
+		IdempotencyKey: "example",
+	}
+	result, err := client.Sending.TransactionalBatch(ctx, params, opts)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -82,7 +90,7 @@ func main() {
 
 ## Broadcast
 
-> Broadcast(ctx, params) (*SendBroadcastResponse, error)
+> Broadcast(ctx, params, opts) (*SendBroadcastResponse, error)
 
 Send a broadcast email
 
@@ -106,7 +114,11 @@ func main() {
 	params := &helo.SendBroadcastRequest{
 		Tags: []string{"example1", "example2"},
 	}
-	result, err := client.Sending.Broadcast(ctx, params)
+	opts := &helo.SendingBroadcastOptions{
+		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
+		IdempotencyKey: "example",
+	}
+	result, err := client.Sending.Broadcast(ctx, params, opts)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -117,7 +129,7 @@ func main() {
 
 ## BroadcastMessage
 
-> BroadcastMessage(ctx, params) (*SendMessageAcceptedResponse, error)
+> BroadcastMessage(ctx, params, opts) (*SendMessageAcceptedResponse, error)
 
 Send a single broadcast email
 
@@ -144,7 +156,11 @@ func main() {
 		Text: "test-text",
 		Tags: []string{"example1", "example2"},
 	}
-	result, err := client.Sending.BroadcastMessage(ctx, params)
+	opts := &helo.SendingBroadcastMessageOptions{
+		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
+		IdempotencyKey: "example",
+	}
+	result, err := client.Sending.BroadcastMessage(ctx, params, opts)
 	if err != nil {
 		log.Fatal(err)
 	}

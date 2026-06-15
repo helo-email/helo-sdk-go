@@ -18,10 +18,11 @@ type Client struct {
 	HTTPClient *http.Client
 }
 
-// requestOptions carries optional body and query parameters for a single call.
+// requestOptions carries optional body, query and header parameters for a single call.
 type requestOptions struct {
-	body  any
-	query map[string]any
+	body    any
+	query   map[string]any
+	headers map[string]string
 }
 
 // requestOption mutates a requestOptions value.
@@ -33,6 +34,10 @@ func withBody(body any) requestOption {
 
 func withQuery(query map[string]any) requestOption {
 	return func(o *requestOptions) { o.query = query }
+}
+
+func withHeaders(headers map[string]string) requestOption {
+	return func(o *requestOptions) { o.headers = headers }
 }
 
 // request performs an HTTP request and decodes the JSON response into out (if non-nil).
@@ -91,6 +96,12 @@ func (c *Client) request(ctx context.Context, method, path string, out any, opts
 	}
 	if options.body != nil {
 		req.Header.Set("Content-Type", "application/json")
+	}
+	for key, value := range options.headers {
+		if value == "" {
+			continue
+		}
+		req.Header.Set(key, value)
 	}
 
 	httpClient := c.HTTPClient

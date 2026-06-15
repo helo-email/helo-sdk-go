@@ -184,7 +184,7 @@ func main() {
 
 ## Verify
 
-> Verify(ctx, id, ) (*DnsRecordsResponse, error)
+> Verify(ctx, id) (*DnsRecordsResponse, error)
 
 Verify a domain
 
@@ -216,7 +216,7 @@ func main() {
 
 ## RotateKey
 
-> RotateKey(ctx, id, ) (*DnsRecordResponse, error)
+> RotateKey(ctx, id) (*DnsRecordResponse, error)
 
 Rotate a domain key
 
