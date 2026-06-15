@@ -23,12 +23,14 @@ package main
 import (
 	"context"
 	"log"
+	"os"
 	"time"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	params := &helo.ActivityListEventsParams{
@@ -69,12 +71,14 @@ package main
 import (
 	"context"
 	"log"
+	"os"
 	"time"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	params := &helo.ActivityListMessagesParams{
@@ -114,11 +118,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	result, err := client.Activity.RetrieveMessage(ctx, "550e8400-e29b-41d4-a716-446655440000")

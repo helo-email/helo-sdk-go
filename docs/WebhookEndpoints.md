@@ -26,11 +26,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	params := &helo.WebhookEndpointsListParams{
@@ -63,11 +65,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	params := &helo.CreateWebhookEndpointRequest{
@@ -101,11 +105,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	result, err := client.WebhookEndpoints.Retrieve(ctx, "550e8400-e29b-41d4-a716-446655440000")
@@ -133,11 +139,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	params := &helo.UpdateWebhookEndpointRequest{
@@ -171,11 +179,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	if err := client.WebhookEndpoints.Delete(ctx, "550e8400-e29b-41d4-a716-446655440000"); err != nil {
@@ -201,11 +211,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	result, err := client.WebhookEndpoints.RegenerateSigningKey(ctx, "550e8400-e29b-41d4-a716-446655440000")

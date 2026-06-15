@@ -24,11 +24,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	params := &helo.SendMessageRequest{
@@ -66,11 +68,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	params := &helo.SendMessageBatchRequest{
@@ -104,11 +108,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	params := &helo.SendBroadcastRequest{
@@ -143,11 +149,13 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+
 	"github.com/helo-email/helo-sdk-go"
 )
 
 func main() {
-	client := helo.NewHelo("YOUR_API_KEY")
+	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
 	params := &helo.SendMessageRequest{
