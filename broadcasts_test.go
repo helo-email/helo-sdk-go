@@ -90,7 +90,11 @@ func TestBroadcasts_ListFailures(t *testing.T) {
 
 	client := NewHelo("test-token-123", WithBaseURL(server.URL))
 
-	result, err := client.Broadcasts.ListFailures(context.Background(), "550e8400-e29b-41d4-a716-446655440000")
+	params := &BroadcastsListFailuresParams{
+		Limit:  10,
+		Offset: 10,
+	}
+	result, err := client.Broadcasts.ListFailures(context.Background(), "550e8400-e29b-41d4-a716-446655440000", params)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -118,7 +122,11 @@ func TestBroadcasts_ListSuppressions(t *testing.T) {
 
 	client := NewHelo("test-token-123", WithBaseURL(server.URL))
 
-	result, err := client.Broadcasts.ListSuppressions(context.Background(), "550e8400-e29b-41d4-a716-446655440000")
+	params := &BroadcastsListSuppressionsParams{
+		Limit:  10,
+		Offset: 10,
+	}
+	result, err := client.Broadcasts.ListSuppressions(context.Background(), "550e8400-e29b-41d4-a716-446655440000", params)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}

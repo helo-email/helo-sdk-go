@@ -85,7 +85,7 @@ func main() {
 
 ## ListFailures
 
-> ListFailures(ctx, id) (*PaginatedResponseOfBroadcastFailure, error)
+> ListFailures(ctx, id, params) (*PaginatedResponseOfBroadcastFailure, error)
 
 List broadcast failures
 
@@ -108,7 +108,11 @@ func main() {
 	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
-	result, err := client.Broadcasts.ListFailures(ctx, "550e8400-e29b-41d4-a716-446655440000")
+	params := &helo.BroadcastsListFailuresParams{
+		Limit: 10,
+		Offset: 10,
+	}
+	result, err := client.Broadcasts.ListFailures(ctx, "550e8400-e29b-41d4-a716-446655440000", params)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -119,7 +123,7 @@ func main() {
 
 ## ListSuppressions
 
-> ListSuppressions(ctx, id) (*PaginatedResponseOfBroadcastSuppression, error)
+> ListSuppressions(ctx, id, params) (*PaginatedResponseOfBroadcastSuppression, error)
 
 List broadcast suppressions
 
@@ -142,7 +146,11 @@ func main() {
 	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
 	ctx := context.Background()
 
-	result, err := client.Broadcasts.ListSuppressions(ctx, "550e8400-e29b-41d4-a716-446655440000")
+	params := &helo.BroadcastsListSuppressionsParams{
+		Limit: 10,
+		Offset: 10,
+	}
+	result, err := client.Broadcasts.ListSuppressions(ctx, "550e8400-e29b-41d4-a716-446655440000", params)
 	if err != nil {
 		log.Fatal(err)
 	}
