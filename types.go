@@ -157,10 +157,11 @@ type CreateDomainRequest struct {
 
 // DnsRecordResponse is a generated schema type.
 type DnsRecordResponse struct {
-	Type   DnsRecordType   `json:"type,omitempty"`
-	Host   string          `json:"host,omitempty"`
-	Value  string          `json:"value,omitempty"`
-	Status DnsRecordStatus `json:"status,omitempty"`
+	Type          DnsRecordType   `json:"type,omitempty"`
+	Host          string          `json:"host,omitempty"`
+	Value         string          `json:"value,omitempty"`
+	Status        DnsRecordStatus `json:"status,omitempty"`
+	LastCheckedAt time.Time       `json:"lastCheckedAt,omitempty"`
 }
 
 // DnsRecordsResponse is a generated schema type.
