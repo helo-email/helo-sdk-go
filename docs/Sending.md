@@ -34,6 +34,8 @@ func main() {
 	ctx := context.Background()
 
 	params := &helo.SendMessageRequest{
+		From: helo.MailAddress{Email: "test@example.com", Name: "test-name"},
+		To: []helo.MailAddress{{Email: "test@example.com", Name: "test-name"}},
 		Subject: "test-subject",
 		Html: "test-html",
 		Text: "test-text",
@@ -78,6 +80,7 @@ func main() {
 	ctx := context.Background()
 
 	params := &helo.SendMessageBatchRequest{
+		Requests: []helo.SendMessageRequest{{From: helo.MailAddress{Email: "test@example.com", Name: "test-name"}, To: []helo.MailAddress{{Email: "test@example.com", Name: "test-name"}}, Subject: "test-subject", Html: "test-html", Text: "test-text", Tags: []string{"example1", "example2"}}},
 	}
 	opts := &helo.SendingTransactionalBatchOptions{
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
@@ -118,7 +121,10 @@ func main() {
 	ctx := context.Background()
 
 	params := &helo.SendBroadcastRequest{
+		From: helo.MailAddress{Email: "test@example.com", Name: "test-name"},
+		Template: helo.SendBroadcastRequestTemplate{Subject: "test-subject", Html: "test-html", Text: "test-text", InlineStyles: true},
 		Tags: []string{"example1", "example2"},
+		Messages: []helo.SendBroadcastRequestMessage{{To: []helo.MailAddress{{Email: "test@example.com", Name: "test-name"}}, Tags: []string{"example1", "example2"}}},
 	}
 	opts := &helo.SendingBroadcastOptions{
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
@@ -159,6 +165,8 @@ func main() {
 	ctx := context.Background()
 
 	params := &helo.SendMessageRequest{
+		From: helo.MailAddress{Email: "test@example.com", Name: "test-name"},
+		To: []helo.MailAddress{{Email: "test@example.com", Name: "test-name"}},
 		Subject: "test-subject",
 		Html: "test-html",
 		Text: "test-text",

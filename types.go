@@ -4,12 +4,12 @@ import "time"
 
 // ChannelDetailsResponse is a generated schema type.
 type ChannelDetailsResponse struct {
-	ID           string          `json:"id,omitempty"`
-	Name         string          `json:"name,omitempty"`
-	DeliveryType DeliveryType    `json:"deliveryType,omitempty"`
-	CreatedAt    time.Time       `json:"createdAt,omitempty"`
-	UpdatedAt    time.Time       `json:"updatedAt,omitempty"`
-	Tracking     ChannelTracking `json:"tracking,omitempty"`
+	ID           string           `json:"id,omitempty"`
+	Name         string           `json:"name,omitempty"`
+	DeliveryType DeliveryType     `json:"deliveryType,omitempty"`
+	CreatedAt    time.Time        `json:"createdAt,omitempty"`
+	UpdatedAt    time.Time        `json:"updatedAt,omitempty"`
+	Tracking     *ChannelTracking `json:"tracking,omitempty"`
 }
 
 // ChannelBasicResponse is a generated schema type.
@@ -28,9 +28,9 @@ type ChannelTracking struct {
 
 // CreateChannelRequest is a generated schema type.
 type CreateChannelRequest struct {
-	Name         string                `json:"name"`
-	DeliveryType DeliveryType          `json:"deliveryType"`
-	Tracking     CreateChannelTracking `json:"tracking,omitempty"`
+	Name         string                 `json:"name"`
+	DeliveryType DeliveryType           `json:"deliveryType"`
+	Tracking     *CreateChannelTracking `json:"tracking,omitempty"`
 }
 
 // CreateChannelTracking is a generated schema type.
@@ -64,9 +64,9 @@ type PaginationResultOfChannelBasicResponse struct {
 
 // UpdateChannelRequest is a generated schema type.
 type UpdateChannelRequest struct {
-	Name         string                `json:"name,omitempty"`
-	DeliveryType DeliveryType          `json:"deliveryType,omitempty"`
-	Tracking     UpdateChannelTracking `json:"tracking,omitempty"`
+	Name         string                 `json:"name,omitempty"`
+	DeliveryType DeliveryType           `json:"deliveryType,omitempty"`
+	Tracking     *UpdateChannelTracking `json:"tracking,omitempty"`
 }
 
 // UpdateChannelTracking is a generated schema type.
@@ -166,11 +166,11 @@ type DnsRecordResponse struct {
 
 // DnsRecordsResponse is a generated schema type.
 type DnsRecordsResponse struct {
-	DomainKeyActive  DnsRecordResponse   `json:"domainKeyActive,omitempty"`
-	DomainKeyPending DnsRecordResponse   `json:"domainKeyPending,omitempty"`
+	DomainKeyActive  *DnsRecordResponse  `json:"domainKeyActive,omitempty"`
+	DomainKeyPending *DnsRecordResponse  `json:"domainKeyPending,omitempty"`
 	ReturnPath       []DnsRecordResponse `json:"returnPath,omitempty"`
-	Tracking         DnsRecordResponse   `json:"tracking,omitempty"`
-	Unsubscribe      DnsRecordResponse   `json:"unsubscribe,omitempty"`
+	Tracking         *DnsRecordResponse  `json:"tracking,omitempty"`
+	Unsubscribe      *DnsRecordResponse  `json:"unsubscribe,omitempty"`
 }
 
 // DomainChannelResponse is a generated schema type.
@@ -231,7 +231,7 @@ type SendBroadcastRequest struct {
 	From        MailAddress                   `json:"from"`
 	ReplyTo     []MailAddress                 `json:"replyTo,omitempty"`
 	Template    SendBroadcastRequestTemplate  `json:"template"`
-	Tracking    SendBroadcastRequestTracking  `json:"tracking,omitempty"`
+	Tracking    *SendBroadcastRequestTracking `json:"tracking,omitempty"`
 	Attachments []Attachment                  `json:"attachments,omitempty"`
 	Tags        []string                      `json:"tags,omitempty"`
 	Headers     map[string]any                `json:"headers,omitempty"`
@@ -247,20 +247,20 @@ type SendBroadcastResponse struct {
 
 // SendMessageRequest is a generated schema type.
 type SendMessageRequest struct {
-	From        MailAddress                `json:"from"`
-	To          []MailAddress              `json:"to"`
-	Cc          []MailAddress              `json:"cc,omitempty"`
-	Bcc         []MailAddress              `json:"bcc,omitempty"`
-	ReplyTo     []MailAddress              `json:"replyTo,omitempty"`
-	Subject     string                     `json:"subject,omitempty"`
-	Html        string                     `json:"html,omitempty"`
-	Text        string                     `json:"text,omitempty"`
-	Template    SendMessageRequestTemplate `json:"template,omitempty"`
-	Tracking    SendMessageRequestTracking `json:"tracking,omitempty"`
-	Attachments []Attachment               `json:"attachments,omitempty"`
-	Tags        []string                   `json:"tags,omitempty"`
-	Headers     map[string]any             `json:"headers,omitempty"`
-	Metadata    map[string]any             `json:"metadata,omitempty"`
+	From        MailAddress                 `json:"from"`
+	To          []MailAddress               `json:"to"`
+	Cc          []MailAddress               `json:"cc,omitempty"`
+	Bcc         []MailAddress               `json:"bcc,omitempty"`
+	ReplyTo     []MailAddress               `json:"replyTo,omitempty"`
+	Subject     string                      `json:"subject,omitempty"`
+	Html        string                      `json:"html,omitempty"`
+	Text        string                      `json:"text,omitempty"`
+	Template    *SendMessageRequestTemplate `json:"template,omitempty"`
+	Tracking    *SendMessageRequestTracking `json:"tracking,omitempty"`
+	Attachments []Attachment                `json:"attachments,omitempty"`
+	Tags        []string                    `json:"tags,omitempty"`
+	Headers     map[string]any              `json:"headers,omitempty"`
+	Metadata    map[string]any              `json:"metadata,omitempty"`
 }
 
 // SendMessageResponse is a generated schema type.
@@ -318,9 +318,9 @@ type BroadcastDetailsResponse struct {
 
 // BroadcastContent is a generated schema type.
 type BroadcastContent struct {
-	From        MailAddress                  `json:"from,omitempty"`
+	From        *MailAddress                 `json:"from,omitempty"`
 	ReplyTo     []MailAddress                `json:"replyTo,omitempty"`
-	Template    BroadcastContentTemplate     `json:"template,omitempty"`
+	Template    *BroadcastContentTemplate    `json:"template,omitempty"`
 	Attachments []BroadcastContentAttachment `json:"attachments,omitempty"`
 	Tags        []string                     `json:"tags,omitempty"`
 	Headers     map[string]any               `json:"headers,omitempty"`
@@ -390,8 +390,8 @@ type DeliveryStats struct {
 
 // StatisticsTotalsResponse is a generated schema type.
 type StatisticsTotalsResponse struct {
-	Transactional DeliveryStats `json:"transactional,omitempty"`
-	Broadcast     DeliveryStats `json:"broadcast,omitempty"`
+	Transactional *DeliveryStats `json:"transactional,omitempty"`
+	Broadcast     *DeliveryStats `json:"broadcast,omitempty"`
 }
 
 // StatisticsDailyResponse is a generated schema type.
@@ -574,14 +574,14 @@ type BroadcastContentAttachment struct {
 
 // StatisticsDailyResponseResult is an inline schema extracted from its parent type.
 type StatisticsDailyResponseResult struct {
-	Timestamp     string        `json:"timestamp,omitempty"`
-	Transactional DeliveryStats `json:"transactional,omitempty"`
-	Broadcast     DeliveryStats `json:"broadcast,omitempty"`
+	Timestamp     string         `json:"timestamp,omitempty"`
+	Transactional *DeliveryStats `json:"transactional,omitempty"`
+	Broadcast     *DeliveryStats `json:"broadcast,omitempty"`
 }
 
 // StatisticsHourlyResponseResult is an inline schema extracted from its parent type.
 type StatisticsHourlyResponseResult struct {
-	Timestamp     time.Time     `json:"timestamp,omitempty"`
-	Transactional DeliveryStats `json:"transactional,omitempty"`
-	Broadcast     DeliveryStats `json:"broadcast,omitempty"`
+	Timestamp     time.Time      `json:"timestamp,omitempty"`
+	Transactional *DeliveryStats `json:"transactional,omitempty"`
+	Broadcast     *DeliveryStats `json:"broadcast,omitempty"`
 }
