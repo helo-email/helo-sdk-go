@@ -2,6 +2,7 @@ package helo
 
 import (
 	"context"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -24,6 +25,9 @@ func TestSending_Transactional(t *testing.T) {
 		}
 		if got, want := r.Header.Get("X-Helo-Idempotency-Key"), "example"; got != want {
 			t.Errorf("header X-Helo-Idempotency-Key = %q, want %q", got, want)
+		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -71,6 +75,9 @@ func TestSending_TransactionalBatch(t *testing.T) {
 		if got, want := r.Header.Get("X-Helo-Idempotency-Key"), "example"; got != want {
 			t.Errorf("header X-Helo-Idempotency-Key = %q, want %q", got, want)
 		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
+		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{}`))
@@ -111,6 +118,9 @@ func TestSending_Broadcast(t *testing.T) {
 		}
 		if got, want := r.Header.Get("X-Helo-Idempotency-Key"), "example"; got != want {
 			t.Errorf("header X-Helo-Idempotency-Key = %q, want %q", got, want)
+		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -155,6 +165,9 @@ func TestSending_BroadcastMessage(t *testing.T) {
 		}
 		if got, want := r.Header.Get("X-Helo-Idempotency-Key"), "example"; got != want {
 			t.Errorf("header X-Helo-Idempotency-Key = %q, want %q", got, want)
+		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)

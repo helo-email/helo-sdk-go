@@ -2,6 +2,7 @@ package helo
 
 import (
 	"context"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -52,6 +53,9 @@ func TestDomains_Create(t *testing.T) {
 		}
 		if !strings.HasPrefix(r.URL.Path, "/domains") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/domains")
+		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -112,6 +116,9 @@ func TestDomains_Update(t *testing.T) {
 		}
 		if !strings.HasPrefix(r.URL.Path, "/domains/550e8400-e29b-41d4-a716-446655440000") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/domains/550e8400-e29b-41d4-a716-446655440000")
+		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)

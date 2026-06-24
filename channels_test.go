@@ -2,6 +2,7 @@ package helo
 
 import (
 	"context"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -53,6 +54,9 @@ func TestChannels_Create(t *testing.T) {
 		}
 		if !strings.HasPrefix(r.URL.Path, "/channels") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/channels")
+		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -113,6 +117,9 @@ func TestChannels_Update(t *testing.T) {
 		}
 		if !strings.HasPrefix(r.URL.Path, "/channels/550e8400-e29b-41d4-a716-446655440000") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/channels/550e8400-e29b-41d4-a716-446655440000")
+		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)

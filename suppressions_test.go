@@ -2,6 +2,7 @@ package helo
 
 import (
 	"context"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -55,6 +56,9 @@ func TestSuppressions_Create(t *testing.T) {
 		if !strings.HasPrefix(r.URL.Path, "/suppressions") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/suppressions")
 		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
+		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{}`))
@@ -87,6 +91,9 @@ func TestSuppressions_Remove(t *testing.T) {
 		}
 		if !strings.HasPrefix(r.URL.Path, "/suppressions/remove") {
 			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/suppressions/remove")
+		}
+		if body, _ := io.ReadAll(r.Body); strings.Contains(string(body), ":{}") {
+			t.Errorf("request body contains an empty object (omitempty not working): %s", body)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
