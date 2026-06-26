@@ -487,13 +487,21 @@ type UpdateWebhookEndpointRequest struct {
 
 // WebhookEndpointResponse Webhook endpoint configuration.
 type WebhookEndpointResponse struct {
-	ID                string          `json:"id,omitempty"`
-	ChannelID         string          `json:"channelId,omitempty"`
-	URL               string          `json:"url,omitempty"`
-	PayloadSigningKey string          `json:"payloadSigningKey,omitempty"`
-	Enabled           bool            `json:"enabled,omitempty"`
-	AdditionalHeaders []WebhookHeader `json:"additionalHeaders,omitempty"`
-	Events            []WebhookEvent  `json:"events,omitempty"`
+	ID                string                       `json:"id,omitempty"`
+	ChannelID         string                       `json:"channelId,omitempty"`
+	URL               string                       `json:"url,omitempty"`
+	PayloadSigningKey string                       `json:"payloadSigningKey,omitempty"`
+	Enabled           bool                         `json:"enabled,omitempty"`
+	AdditionalHeaders []WebhookHeader              `json:"additionalHeaders,omitempty"`
+	Events            []WebhookEvent               `json:"events,omitempty"`
+	LastResponse      *WebhookEndpointLastResponse `json:"lastResponse,omitempty"`
+}
+
+// WebhookEndpointLastResponse The most recent delivery outcome recorded for a webhook endpoint.
+type WebhookEndpointLastResponse struct {
+	StatusCode int       `json:"statusCode,omitempty"`
+	Error      string    `json:"error,omitempty"`
+	At         time.Time `json:"at,omitempty"`
 }
 
 // MessageDetailsResponseAttachment is an inline schema extracted from its parent type.
