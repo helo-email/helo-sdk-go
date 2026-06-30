@@ -10,14 +10,14 @@ const DefaultBaseURL = "https://api.helohq.com"
 type Helo struct {
 	client *Client
 
-	Channels         *ChannelsService
-	Activity         *ActivityService
-	Domains          *DomainsService
-	Sending          *SendingService
-	Broadcasts       *BroadcastsService
-	Statistics       *StatisticsService
-	Suppressions     *SuppressionsService
-	WebhookEndpoints *WebhookEndpointsService
+	Channels     *ChannelsService
+	Activity     *ActivityService
+	Domains      *DomainsService
+	Sending      *SendingService
+	Broadcasts   *BroadcastsService
+	Statistics   *StatisticsService
+	Suppressions *SuppressionsService
+	Webhooks     *WebhooksService
 }
 
 // HeloOption configures a Helo client.
@@ -54,7 +54,7 @@ func NewHelo(apiKey string, opts ...HeloOption) *Helo {
 	c.Broadcasts = &BroadcastsService{client: c.client}
 	c.Statistics = &StatisticsService{client: c.client}
 	c.Suppressions = &SuppressionsService{client: c.client}
-	c.WebhookEndpoints = &WebhookEndpointsService{client: c.client}
+	c.Webhooks = &WebhooksService{client: c.client}
 
 	return c
 }

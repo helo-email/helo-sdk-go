@@ -43,4 +43,4 @@ func main() {
 - [Broadcasts](docs/Broadcasts.md)
 - [Statistics](docs/Statistics.md)
 - [Suppressions](docs/Suppressions.md)
-- [WebhookEndpoints](docs/WebhookEndpoints.md)
+- [Webhooks](docs/Webhooks.md)

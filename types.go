@@ -455,8 +455,8 @@ type RemoveSuppressionResult struct {
 	Message string `json:"message,omitempty"`
 }
 
-// CreateWebhookEndpointRequest Request body for creating a new webhook endpoint.
-type CreateWebhookEndpointRequest struct {
+// CreateWebhookRequest Request body for creating a new webhook.
+type CreateWebhookRequest struct {
 	URL               string          `json:"url"`
 	Events            []WebhookEvent  `json:"events"`
 	ChannelID         string          `json:"channelId,omitempty"`
@@ -470,14 +470,14 @@ type WebhookHeader struct {
 	Value string `json:"value"`
 }
 
-// PaginationResultOfWebhookEndpointResponse Paginated list of webhook endpoints.
-type PaginationResultOfWebhookEndpointResponse struct {
-	Results    []WebhookEndpointResponse `json:"results"`
-	TotalCount int                       `json:"totalCount"`
+// PaginationResultOfWebhookResponse Paginated list of webhooks.
+type PaginationResultOfWebhookResponse struct {
+	Results    []WebhookResponse `json:"results"`
+	TotalCount int               `json:"totalCount"`
 }
 
-// UpdateWebhookEndpointRequest Request body for updating a webhook endpoint. Only provided fields are changed.
-type UpdateWebhookEndpointRequest struct {
+// UpdateWebhookRequest Request body for updating a webhook. Only provided fields are changed.
+type UpdateWebhookRequest struct {
 	URL               string          `json:"url,omitempty"`
 	Events            []WebhookEvent  `json:"events,omitempty"`
 	ChannelID         string          `json:"channelId,omitempty"`
@@ -485,23 +485,28 @@ type UpdateWebhookEndpointRequest struct {
 	Enabled           bool            `json:"enabled,omitempty"`
 }
 
-// WebhookEndpointResponse Webhook endpoint configuration.
-type WebhookEndpointResponse struct {
-	ID                string                       `json:"id,omitempty"`
-	ChannelID         string                       `json:"channelId,omitempty"`
-	URL               string                       `json:"url,omitempty"`
-	PayloadSigningKey string                       `json:"payloadSigningKey,omitempty"`
-	Enabled           bool                         `json:"enabled,omitempty"`
-	AdditionalHeaders []WebhookHeader              `json:"additionalHeaders,omitempty"`
-	Events            []WebhookEvent               `json:"events,omitempty"`
-	LastResponse      *WebhookEndpointLastResponse `json:"lastResponse,omitempty"`
+// WebhookResponse Webhook configuration properties.
+type WebhookResponse struct {
+	ID                string               `json:"id,omitempty"`
+	ChannelID         string               `json:"channelId,omitempty"`
+	URL               string               `json:"url,omitempty"`
+	PayloadSigningKey string               `json:"payloadSigningKey,omitempty"`
+	Enabled           bool                 `json:"enabled,omitempty"`
+	AdditionalHeaders []WebhookHeader      `json:"additionalHeaders,omitempty"`
+	Events            []WebhookEvent       `json:"events,omitempty"`
+	LastResponse      *WebhookLastResponse `json:"lastResponse,omitempty"`
 }
 
-// WebhookEndpointLastResponse The most recent delivery outcome recorded for a webhook endpoint.
-type WebhookEndpointLastResponse struct {
+// WebhookLastResponse The most recent delivery outcome recorded for a webhook.
+type WebhookLastResponse struct {
 	StatusCode int       `json:"statusCode,omitempty"`
 	Error      string    `json:"error,omitempty"`
 	At         time.Time `json:"at,omitempty"`
+}
+
+// WebhooksResponse Collection of webhooks.
+type WebhooksResponse struct {
+	Webhooks []WebhookResponse `json:"webhooks"`
 }
 
 // MessageDetailsResponseAttachment is an inline schema extracted from its parent type.
