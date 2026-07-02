@@ -10,15 +10,6 @@ type WebhooksService struct {
 	client *Client
 }
 
-// ListForChannel ListForChannel operation
-func (s *WebhooksService) ListForChannel(ctx context.Context, id string) (*WebhooksResponse, error) {
-	out := new(WebhooksResponse)
-	if err := s.client.request(ctx, "GET", fmt.Sprintf("/app/channels/%v/webhooks", id), out); err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // List List operation
 func (s *WebhooksService) List(ctx context.Context, params *WebhooksListParams) (*PaginationResultOfWebhookResponse, error) {
 	out := new(PaginationResultOfWebhookResponse)

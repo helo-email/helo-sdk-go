@@ -2,47 +2,12 @@
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**ListForChannel**](Webhooks.md#listforchannel) | **GET** /app/channels/{id}/webhooks | ListForChannel operation |
 | [**List**](Webhooks.md#list) | **GET** /webhooks | List operation |
 | [**Create**](Webhooks.md#create) | **POST** /webhooks | Create operation |
 | [**Retrieve**](Webhooks.md#retrieve) | **GET** /webhooks/{id} | Retrieve operation |
 | [**Update**](Webhooks.md#update) | **PATCH** /webhooks/{id} | Update operation |
 | [**Delete**](Webhooks.md#delete) | **DELETE** /webhooks/{id} | Delete operation |
 | [**RegenerateSigningKey**](Webhooks.md#regeneratesigningkey) | **POST** /webhooks/{id}/regenerate-signing-key | RegenerateSigningKey operation |
-
-
-## ListForChannel
-
-> ListForChannel(ctx, id) (*WebhooksResponse, error)
-
-ListForChannel operation
-
-Retrieve all webhooks applicable to a specific channel.
-
-### Example
-
-```go Webhooks_listForChannel
-package main
-
-import (
-	"context"
-	"log"
-	"os"
-
-	"github.com/helo-email/helo-sdk-go"
-)
-
-func main() {
-	client := helo.NewHelo(os.Getenv("HELO_API_KEY"))
-	ctx := context.Background()
-
-	result, err := client.Webhooks.ListForChannel(ctx, "550e8400-e29b-41d4-a716-446655440000")
-	if err != nil {
-		log.Fatal(err)
-	}
-	_ = result
-}
-```
 
 
 ## List

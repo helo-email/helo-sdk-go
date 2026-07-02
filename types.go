@@ -504,11 +504,6 @@ type WebhookLastResponse struct {
 	At         time.Time `json:"at,omitempty"`
 }
 
-// WebhooksResponse Collection of webhooks.
-type WebhooksResponse struct {
-	Webhooks []WebhookResponse `json:"webhooks"`
-}
-
 // MessageDetailsResponseAttachment is an inline schema extracted from its parent type.
 type MessageDetailsResponseAttachment struct {
 	FileName    string  `json:"fileName"`
