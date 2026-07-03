@@ -504,6 +504,59 @@ type WebhookLastResponse struct {
 	At         time.Time `json:"at,omitempty"`
 }
 
+// WebhookPayloadCommon Fields common to every webhook payload.
+type WebhookPayloadCommon struct {
+	Timestamp time.Time      `json:"timestamp,omitempty"`
+	MessageID string         `json:"messageId,omitempty"`
+	ChannelID string         `json:"channelId,omitempty"`
+	MailType  MailType       `json:"mailType,omitempty"`
+	Subject   string         `json:"subject,omitempty"`
+	Tags      []string       `json:"tags,omitempty"`
+	Metadata  map[string]any `json:"metadata,omitempty"`
+}
+
+// AcceptedWebhookPayload Payload delivered for the `accepted` event.
+type AcceptedWebhookPayload struct {
+}
+
+// ProcessedWebhookPayload Payload delivered for the `processed` event.
+type ProcessedWebhookPayload struct {
+}
+
+// DeliveredWebhookPayload Payload delivered for the `delivered` event.
+type DeliveredWebhookPayload struct {
+}
+
+// BouncedWebhookPayload Payload delivered for the `bounced` event.
+type BouncedWebhookPayload struct {
+}
+
+// OpenedWebhookPayload Payload delivered for the `opened` event.
+type OpenedWebhookPayload struct {
+}
+
+// ClickedWebhookPayload Payload delivered for the `clicked` event.
+type ClickedWebhookPayload struct {
+}
+
+// ComplainedWebhookPayload Payload delivered for the `complained` event.
+type ComplainedWebhookPayload struct {
+}
+
+// UnsubscribedWebhookPayload Payload delivered for the `unsubscribed` event.
+type UnsubscribedWebhookPayload struct {
+}
+
+// ResubscribedWebhookPayload Payload delivered for the `resubscribed` event.
+type ResubscribedWebhookPayload struct {
+}
+
+// RecipientEventFields Fields shared by per-recipient events (delivered, bounced, opened, clicked, complained, unsubscribed, resubscribed).
+type RecipientEventFields struct {
+	Recipient string `json:"recipient"`
+	Details   any    `json:"details,omitempty"`
+}
+
 // MessageDetailsResponseAttachment is an inline schema extracted from its parent type.
 type MessageDetailsResponseAttachment struct {
 	FileName    string  `json:"fileName"`
