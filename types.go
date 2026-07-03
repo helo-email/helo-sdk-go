@@ -517,38 +517,126 @@ type WebhookPayloadCommon struct {
 
 // AcceptedWebhookPayload Payload delivered for the `accepted` event.
 type AcceptedWebhookPayload struct {
+	EventType  string         `json:"eventType"`
+	Recipients []string       `json:"recipients"`
+	Timestamp  time.Time      `json:"timestamp"`
+	MessageID  string         `json:"messageId"`
+	ChannelID  string         `json:"channelId"`
+	MailType   MailType       `json:"mailType"`
+	Subject    string         `json:"subject,omitempty"`
+	Tags       []string       `json:"tags,omitempty"`
+	Metadata   map[string]any `json:"metadata,omitempty"`
 }
 
 // ProcessedWebhookPayload Payload delivered for the `processed` event.
 type ProcessedWebhookPayload struct {
+	EventType  string         `json:"eventType"`
+	Recipients []string       `json:"recipients"`
+	Timestamp  time.Time      `json:"timestamp"`
+	MessageID  string         `json:"messageId"`
+	ChannelID  string         `json:"channelId"`
+	MailType   MailType       `json:"mailType"`
+	Subject    string         `json:"subject,omitempty"`
+	Tags       []string       `json:"tags,omitempty"`
+	Metadata   map[string]any `json:"metadata,omitempty"`
 }
 
 // DeliveredWebhookPayload Payload delivered for the `delivered` event.
 type DeliveredWebhookPayload struct {
+	EventType string         `json:"eventType"`
+	Recipient string         `json:"recipient"`
+	Details   any            `json:"details,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
+	MessageID string         `json:"messageId"`
+	ChannelID string         `json:"channelId"`
+	MailType  MailType       `json:"mailType"`
+	Subject   string         `json:"subject,omitempty"`
+	Tags      []string       `json:"tags,omitempty"`
+	Metadata  map[string]any `json:"metadata,omitempty"`
 }
 
 // BouncedWebhookPayload Payload delivered for the `bounced` event.
 type BouncedWebhookPayload struct {
+	EventType string         `json:"eventType"`
+	Recipient string         `json:"recipient"`
+	Details   any            `json:"details,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
+	MessageID string         `json:"messageId"`
+	ChannelID string         `json:"channelId"`
+	MailType  MailType       `json:"mailType"`
+	Subject   string         `json:"subject,omitempty"`
+	Tags      []string       `json:"tags,omitempty"`
+	Metadata  map[string]any `json:"metadata,omitempty"`
 }
 
 // OpenedWebhookPayload Payload delivered for the `opened` event.
 type OpenedWebhookPayload struct {
+	EventType string         `json:"eventType"`
+	Recipient string         `json:"recipient"`
+	Details   any            `json:"details,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
+	MessageID string         `json:"messageId"`
+	ChannelID string         `json:"channelId"`
+	MailType  MailType       `json:"mailType"`
+	Subject   string         `json:"subject,omitempty"`
+	Tags      []string       `json:"tags,omitempty"`
+	Metadata  map[string]any `json:"metadata,omitempty"`
 }
 
 // ClickedWebhookPayload Payload delivered for the `clicked` event.
 type ClickedWebhookPayload struct {
+	EventType string         `json:"eventType"`
+	Recipient string         `json:"recipient"`
+	Details   any            `json:"details,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
+	MessageID string         `json:"messageId"`
+	ChannelID string         `json:"channelId"`
+	MailType  MailType       `json:"mailType"`
+	Subject   string         `json:"subject,omitempty"`
+	Tags      []string       `json:"tags,omitempty"`
+	Metadata  map[string]any `json:"metadata,omitempty"`
 }
 
 // ComplainedWebhookPayload Payload delivered for the `complained` event.
 type ComplainedWebhookPayload struct {
+	EventType string         `json:"eventType"`
+	Recipient string         `json:"recipient"`
+	Details   any            `json:"details,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
+	MessageID string         `json:"messageId"`
+	ChannelID string         `json:"channelId"`
+	MailType  MailType       `json:"mailType"`
+	Subject   string         `json:"subject,omitempty"`
+	Tags      []string       `json:"tags,omitempty"`
+	Metadata  map[string]any `json:"metadata,omitempty"`
 }
 
 // UnsubscribedWebhookPayload Payload delivered for the `unsubscribed` event.
 type UnsubscribedWebhookPayload struct {
+	EventType string         `json:"eventType"`
+	Recipient string         `json:"recipient"`
+	Details   any            `json:"details,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
+	MessageID string         `json:"messageId"`
+	ChannelID string         `json:"channelId"`
+	MailType  MailType       `json:"mailType"`
+	Subject   string         `json:"subject,omitempty"`
+	Tags      []string       `json:"tags,omitempty"`
+	Metadata  map[string]any `json:"metadata,omitempty"`
 }
 
 // ResubscribedWebhookPayload Payload delivered for the `resubscribed` event.
 type ResubscribedWebhookPayload struct {
+	EventType string         `json:"eventType"`
+	Recipient string         `json:"recipient"`
+	Details   any            `json:"details,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
+	MessageID string         `json:"messageId"`
+	ChannelID string         `json:"channelId"`
+	MailType  MailType       `json:"mailType"`
+	Subject   string         `json:"subject,omitempty"`
+	Tags      []string       `json:"tags,omitempty"`
+	Metadata  map[string]any `json:"metadata,omitempty"`
 }
 
 // RecipientEventFields Fields shared by per-recipient events (delivered, bounced, opened, clicked, complained, unsubscribed, resubscribed).
