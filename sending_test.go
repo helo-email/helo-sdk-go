@@ -38,12 +38,12 @@ func TestSending_Transactional(t *testing.T) {
 	client := NewHelo("test-token-123", WithBaseURL(server.URL))
 
 	params := &SendMessageRequest{
-		From:    MailAddress{Email: "test@example.com", Name: "test-name"},
-		To:      []MailAddress{{Email: "test@example.com", Name: "test-name"}},
-		Subject: "test-subject",
-		Html:    "test-html",
-		Text:    "test-text",
-		Tags:    []string{"example1", "example2"},
+		From:    MailAddress{Email: "from@yourdomain.com", Name: "From name"},
+		To:      []MailAddress{{Email: "to@example.com", Name: "To name"}},
+		Subject: "Hello from Helo",
+		Html:    "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+		Text:    "This is a test message, delivered with <3 by Helo.",
+		Tags:    []string{"welcome", "onboarding"},
 	}
 	opts := &SendingTransactionalOptions{
 		ChannelID:      "550e8400-e29b-41d4-a716-446655440000",
@@ -178,12 +178,12 @@ func TestSending_BroadcastMessage(t *testing.T) {
 	client := NewHelo("test-token-123", WithBaseURL(server.URL))
 
 	params := &SendMessageRequest{
-		From:    MailAddress{Email: "test@example.com", Name: "test-name"},
-		To:      []MailAddress{{Email: "test@example.com", Name: "test-name"}},
-		Subject: "test-subject",
-		Html:    "test-html",
-		Text:    "test-text",
-		Tags:    []string{"example1", "example2"},
+		From:    MailAddress{Email: "from@yourdomain.com", Name: "From name"},
+		To:      []MailAddress{{Email: "to@example.com", Name: "To name"}},
+		Subject: "Hello from Helo",
+		Html:    "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>",
+		Text:    "This is a test message, delivered with <3 by Helo.",
+		Tags:    []string{"welcome", "onboarding"},
 	}
 	opts := &SendingBroadcastMessageOptions{
 		ChannelID:      "550e8400-e29b-41d4-a716-446655440000",

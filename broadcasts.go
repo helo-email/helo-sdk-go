@@ -28,7 +28,7 @@ func (s *BroadcastsService) Retrieve(ctx context.Context, id string) (*Broadcast
 	return out, nil
 }
 
-// ListFailures List broadcast failures
+// ListFailures List failed broadcast messages
 func (s *BroadcastsService) ListFailures(ctx context.Context, id string, params *BroadcastsListFailuresParams) (*PaginatedResponseOfBroadcastFailure, error) {
 	out := new(PaginatedResponseOfBroadcastFailure)
 	if err := s.client.request(ctx, "GET", fmt.Sprintf("/broadcasts/%v/failures", id), out, withQuery(params.toQuery())); err != nil {
@@ -37,7 +37,7 @@ func (s *BroadcastsService) ListFailures(ctx context.Context, id string, params 
 	return out, nil
 }
 
-// ListSuppressions List broadcast suppressions
+// ListSuppressions List broadcast suppressed recipients
 func (s *BroadcastsService) ListSuppressions(ctx context.Context, id string, params *BroadcastsListSuppressionsParams) (*PaginatedResponseOfBroadcastSuppression, error) {
 	out := new(PaginatedResponseOfBroadcastSuppression)
 	if err := s.client.request(ctx, "GET", fmt.Sprintf("/broadcasts/%v/suppressions", id), out, withQuery(params.toQuery())); err != nil {

@@ -10,7 +10,7 @@ type WebhooksService struct {
 	client *Client
 }
 
-// List List operation
+// List List all webhooks
 func (s *WebhooksService) List(ctx context.Context, params *WebhooksListParams) (*PaginationResultOfWebhookResponse, error) {
 	out := new(PaginationResultOfWebhookResponse)
 	if err := s.client.request(ctx, "GET", "/webhooks", out, withQuery(params.toQuery())); err != nil {
@@ -19,7 +19,7 @@ func (s *WebhooksService) List(ctx context.Context, params *WebhooksListParams) 
 	return out, nil
 }
 
-// Create Create operation
+// Create Create a webhook
 func (s *WebhooksService) Create(ctx context.Context, params *CreateWebhookRequest) (*WebhookResponse, error) {
 	out := new(WebhookResponse)
 	if err := s.client.request(ctx, "POST", "/webhooks", out, withBody(params)); err != nil {
@@ -28,7 +28,7 @@ func (s *WebhooksService) Create(ctx context.Context, params *CreateWebhookReque
 	return out, nil
 }
 
-// Retrieve Retrieve operation
+// Retrieve Retrieve a webhook
 func (s *WebhooksService) Retrieve(ctx context.Context, id string) (*WebhookResponse, error) {
 	out := new(WebhookResponse)
 	if err := s.client.request(ctx, "GET", fmt.Sprintf("/webhooks/%v", id), out); err != nil {
@@ -37,7 +37,7 @@ func (s *WebhooksService) Retrieve(ctx context.Context, id string) (*WebhookResp
 	return out, nil
 }
 
-// Update Update operation
+// Update Update a webhook
 func (s *WebhooksService) Update(ctx context.Context, id string, params *UpdateWebhookRequest) (*WebhookResponse, error) {
 	out := new(WebhookResponse)
 	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/webhooks/%v", id), out, withBody(params)); err != nil {
@@ -46,7 +46,7 @@ func (s *WebhooksService) Update(ctx context.Context, id string, params *UpdateW
 	return out, nil
 }
 
-// Delete Delete operation
+// Delete Delete a webhook
 func (s *WebhooksService) Delete(ctx context.Context, id string) error {
 	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/webhooks/%v", id), nil); err != nil {
 		return err
@@ -54,7 +54,7 @@ func (s *WebhooksService) Delete(ctx context.Context, id string) error {
 	return nil
 }
 
-// RegenerateSigningKey RegenerateSigningKey operation
+// RegenerateSigningKey Regenerate webhook signing key
 func (s *WebhooksService) RegenerateSigningKey(ctx context.Context, id string) (*WebhookResponse, error) {
 	out := new(WebhookResponse)
 	if err := s.client.request(ctx, "POST", fmt.Sprintf("/webhooks/%v/regenerate-signing-key", id), out); err != nil {

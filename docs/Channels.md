@@ -128,7 +128,7 @@ func main() {
 
 Update a channel
 
-Modifies the settings and configuration of an existing channel.
+Modifies an existing channel by ID.
 
 ### Example
 

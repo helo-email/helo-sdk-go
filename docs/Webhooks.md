@@ -2,21 +2,21 @@
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**List**](Webhooks.md#list) | **GET** /webhooks | List operation |
-| [**Create**](Webhooks.md#create) | **POST** /webhooks | Create operation |
-| [**Retrieve**](Webhooks.md#retrieve) | **GET** /webhooks/{id} | Retrieve operation |
-| [**Update**](Webhooks.md#update) | **PATCH** /webhooks/{id} | Update operation |
-| [**Delete**](Webhooks.md#delete) | **DELETE** /webhooks/{id} | Delete operation |
-| [**RegenerateSigningKey**](Webhooks.md#regeneratesigningkey) | **POST** /webhooks/{id}/regenerate-signing-key | RegenerateSigningKey operation |
+| [**List**](Webhooks.md#list) | **GET** /webhooks | List all webhooks |
+| [**Create**](Webhooks.md#create) | **POST** /webhooks | Create a webhook |
+| [**Retrieve**](Webhooks.md#retrieve) | **GET** /webhooks/{id} | Retrieve a webhook |
+| [**Update**](Webhooks.md#update) | **PATCH** /webhooks/{id} | Update a webhook |
+| [**Delete**](Webhooks.md#delete) | **DELETE** /webhooks/{id} | Delete a webhook |
+| [**RegenerateSigningKey**](Webhooks.md#regeneratesigningkey) | **POST** /webhooks/{id}/regenerate-signing-key | Regenerate webhook signing key |
 
 
 ## List
 
 > List(ctx, params) (*PaginationResultOfWebhookResponse, error)
 
-List operation
+List all webhooks
 
-List webhooks.
+Retrieves all webhooks configured for the account.
 
 ### Example
 
@@ -53,9 +53,9 @@ func main() {
 
 > Create(ctx, params) (*WebhookResponse, error)
 
-Create operation
+Create a webhook
 
-Create a new webhook.
+Registers a new webhook to receive event notifications.
 
 ### Example
 
@@ -93,9 +93,9 @@ func main() {
 
 > Retrieve(ctx, id) (*WebhookResponse, error)
 
-Retrieve operation
+Retrieve a webhook
 
-Retrieve a single webhook by ID.
+Fetches the details and configuration of a specific webhook.
 
 ### Example
 
@@ -127,9 +127,9 @@ func main() {
 
 > Update(ctx, id, params) (*WebhookResponse, error)
 
-Update operation
+Update a webhook
 
-Update an existing webhook.
+Modifies an existing webhook by ID.
 
 ### Example
 
@@ -167,9 +167,9 @@ func main() {
 
 > Delete(ctx, id) error
 
-Delete operation
+Delete a webhook
 
-Delete a webhook by ID.
+Permanently removes a webhook.
 
 ### Example
 
@@ -199,7 +199,7 @@ func main() {
 
 > RegenerateSigningKey(ctx, id) (*WebhookResponse, error)
 
-RegenerateSigningKey operation
+Regenerate webhook signing key
 
 Regenerate the signing key used for the webhook signature. This operation replaces the old key.
 

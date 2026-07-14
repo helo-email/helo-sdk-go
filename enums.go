@@ -105,7 +105,7 @@ const (
 	BroadcastStatusAccepted   BroadcastStatus = "accepted"
 	BroadcastStatusProcessing BroadcastStatus = "processing"
 	BroadcastStatusCompleted  BroadcastStatus = "completed"
-	BroadcastStatusCancelled  BroadcastStatus = "cancelled"
+	BroadcastStatusCanceled   BroadcastStatus = "canceled"
 )
 
 // AllBroadcastStatusValues returns all valid BroadcastStatus values.
@@ -114,7 +114,7 @@ func AllBroadcastStatusValues() []BroadcastStatus {
 		BroadcastStatusAccepted,
 		BroadcastStatusProcessing,
 		BroadcastStatusCompleted,
-		BroadcastStatusCancelled,
+		BroadcastStatusCanceled,
 	}
 }
 

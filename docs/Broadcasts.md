@@ -4,8 +4,8 @@
 | ------ | ------------ | ----------- |
 | [**List**](Broadcasts.md#list) | **GET** /broadcasts | List broadcasts |
 | [**Retrieve**](Broadcasts.md#retrieve) | **GET** /broadcasts/{id} | Retrieve a broadcast |
-| [**ListFailures**](Broadcasts.md#listfailures) | **GET** /broadcasts/{id}/failures | List broadcast failures |
-| [**ListSuppressions**](Broadcasts.md#listsuppressions) | **GET** /broadcasts/{id}/suppressions | List broadcast suppressions |
+| [**ListFailures**](Broadcasts.md#listfailures) | **GET** /broadcasts/{id}/failures | List failed broadcast messages |
+| [**ListSuppressions**](Broadcasts.md#listsuppressions) | **GET** /broadcasts/{id}/suppressions | List broadcast suppressed recipients |
 
 
 ## List
@@ -87,9 +87,9 @@ func main() {
 
 > ListFailures(ctx, id, params) (*PaginatedResponseOfBroadcastFailure, error)
 
-List broadcast failures
+List failed broadcast messages
 
-Retrieves a list of failed messages for a specific broadcast.
+Returns messages that could not be delivered due to permanent errors (e.g. invalid addresses, domain issues). Transient errors that were retried successfully do not appear here.
 
 ### Example
 
@@ -125,9 +125,9 @@ func main() {
 
 > ListSuppressions(ctx, id, params) (*PaginatedResponseOfBroadcastSuppression, error)
 
-List broadcast suppressions
+List broadcast suppressed recipients
 
-Retrieves a list of suppressed recipients for a specific broadcast.
+Returns recipients that were skipped because they appear on a suppression list (e.g. previous bounces or unsubscribes).
 
 ### Example
 
