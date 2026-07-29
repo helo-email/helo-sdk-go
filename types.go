@@ -169,8 +169,6 @@ type DnsRecordsResponse struct {
 	DomainKeyActive  *DnsRecordResponse  `json:"domainKeyActive,omitempty"`
 	DomainKeyPending *DnsRecordResponse  `json:"domainKeyPending,omitempty"`
 	ReturnPath       []DnsRecordResponse `json:"returnPath,omitempty"`
-	Tracking         *DnsRecordResponse  `json:"tracking,omitempty"`
-	Unsubscribe      *DnsRecordResponse  `json:"unsubscribe,omitempty"`
 }
 
 // DomainChannelResponse is a generated schema type.
