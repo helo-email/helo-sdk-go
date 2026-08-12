@@ -112,15 +112,27 @@ type PaginatedMessagesResponse struct {
 
 // Message is a generated schema type.
 type Message struct {
-	MessageID    string    `json:"messageId"`
-	ChannelID    string    `json:"channelId"`
-	Timestamp    time.Time `json:"timestamp"`
-	MailType     string    `json:"mailType"`
-	MailSource   string    `json:"mailSource"`
-	DeliveryType string    `json:"deliveryType"`
-	Status       string    `json:"status"`
-	Subject      string    `json:"subject"`
-	Recipients   []string  `json:"recipients"`
+	MessageID    string            `json:"messageId"`
+	ChannelID    string            `json:"channelId"`
+	Timestamp    time.Time         `json:"timestamp"`
+	MailType     string            `json:"mailType"`
+	MailSource   string            `json:"mailSource"`
+	DeliveryType string            `json:"deliveryType"`
+	Status       string            `json:"status"`
+	Subject      string            `json:"subject"`
+	Recipients   []string          `json:"recipients"`
+	Tags         []string          `json:"tags,omitempty"`
+	Statistics   MessageStatistics `json:"statistics"`
+}
+
+// MessageStatistics is a generated schema type.
+type MessageStatistics struct {
+	Delivered    int `json:"delivered"`
+	Bounced      int `json:"bounced"`
+	Opened       int `json:"opened"`
+	Clicked      int `json:"clicked"`
+	Complained   int `json:"complained"`
+	Unsubscribed int `json:"unsubscribed"`
 }
 
 // MessageDetailsResponse is a generated schema type.
@@ -147,6 +159,7 @@ type MessageDetailsResponse struct {
 	Attachments  []MessageDetailsResponseAttachment `json:"attachments,omitempty"`
 	Tracking     MessageDetailsResponseTracking     `json:"tracking"`
 	Events       []MessageDetailsResponseEvent      `json:"events"`
+	Statistics   *MessageStatistics                 `json:"statistics,omitempty"`
 }
 
 // CreateDomainRequest is a generated schema type.
