@@ -13,7 +13,7 @@ type StatisticsService struct {
 // RetrieveHourly Retrieve hourly statistics
 func (s *StatisticsService) RetrieveHourly(ctx context.Context, params *StatisticsRetrieveHourlyParams) (*StatisticsHourlyResponse, error) {
 	out := new(StatisticsHourlyResponse)
-	if err := s.client.request(ctx, "GET", "/activity/statistics/hourly", out, withQuery(params.toQuery())); err != nil {
+	if err := s.client.request(ctx, "GET", "/statistics/hourly", out, withQuery(params.toQuery())); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -22,7 +22,7 @@ func (s *StatisticsService) RetrieveHourly(ctx context.Context, params *Statisti
 // RetrieveDaily Retrieve daily statistics
 func (s *StatisticsService) RetrieveDaily(ctx context.Context, params *StatisticsRetrieveDailyParams) (*StatisticsDailyResponse, error) {
 	out := new(StatisticsDailyResponse)
-	if err := s.client.request(ctx, "GET", "/activity/statistics/daily", out, withQuery(params.toQuery())); err != nil {
+	if err := s.client.request(ctx, "GET", "/statistics/daily", out, withQuery(params.toQuery())); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -31,7 +31,7 @@ func (s *StatisticsService) RetrieveDaily(ctx context.Context, params *Statistic
 // RetrieveTotals Retrieve all time statistics
 func (s *StatisticsService) RetrieveTotals(ctx context.Context, params *StatisticsRetrieveTotalsParams) (*StatisticsTotalsResponse, error) {
 	out := new(StatisticsTotalsResponse)
-	if err := s.client.request(ctx, "GET", "/activity/statistics/totals", out, withQuery(params.toQuery())); err != nil {
+	if err := s.client.request(ctx, "GET", "/statistics/totals", out, withQuery(params.toQuery())); err != nil {
 		return nil, err
 	}
 	return out, nil

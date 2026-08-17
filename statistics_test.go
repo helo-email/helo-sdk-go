@@ -17,8 +17,8 @@ func TestStatistics_RetrieveHourly(t *testing.T) {
 		if got, want := r.Header.Get("Authorization"), "Bearer test-token-123"; got != want {
 			t.Errorf("authorization = %q, want %q", got, want)
 		}
-		if !strings.HasPrefix(r.URL.Path, "/activity/statistics/hourly") {
-			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/activity/statistics/hourly")
+		if !strings.HasPrefix(r.URL.Path, "/statistics/hourly") {
+			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/statistics/hourly")
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -51,8 +51,8 @@ func TestStatistics_RetrieveDaily(t *testing.T) {
 		if got, want := r.Header.Get("Authorization"), "Bearer test-token-123"; got != want {
 			t.Errorf("authorization = %q, want %q", got, want)
 		}
-		if !strings.HasPrefix(r.URL.Path, "/activity/statistics/daily") {
-			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/activity/statistics/daily")
+		if !strings.HasPrefix(r.URL.Path, "/statistics/daily") {
+			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/statistics/daily")
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -86,8 +86,8 @@ func TestStatistics_RetrieveTotals(t *testing.T) {
 		if got, want := r.Header.Get("Authorization"), "Bearer test-token-123"; got != want {
 			t.Errorf("authorization = %q, want %q", got, want)
 		}
-		if !strings.HasPrefix(r.URL.Path, "/activity/statistics/totals") {
-			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/activity/statistics/totals")
+		if !strings.HasPrefix(r.URL.Path, "/statistics/totals") {
+			t.Errorf("path = %q, want prefix %q", r.URL.Path, "/statistics/totals")
 		}
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
