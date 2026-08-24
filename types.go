@@ -517,39 +517,44 @@ type WebhookLastResponse struct {
 
 // WebhookPayloadCommon Fields common to every webhook payload.
 type WebhookPayloadCommon struct {
-	Timestamp time.Time      `json:"timestamp,omitempty"`
+	Timestamp time.Time `json:"timestamp,omitempty"`
+}
+
+// DeliveryWebhookPayloadCommon Fields common to every delivery webhook payload.
+type DeliveryWebhookPayloadCommon struct {
 	MessageID string         `json:"messageId,omitempty"`
 	ChannelID string         `json:"channelId,omitempty"`
 	MailType  MailType       `json:"mailType,omitempty"`
 	Subject   string         `json:"subject,omitempty"`
 	Tags      []string       `json:"tags,omitempty"`
 	Metadata  map[string]any `json:"metadata,omitempty"`
+	Timestamp time.Time      `json:"timestamp,omitempty"`
 }
 
 // AcceptedWebhookPayload Payload delivered for the `accepted` event.
 type AcceptedWebhookPayload struct {
 	EventType  string         `json:"eventType"`
 	Recipients []string       `json:"recipients"`
-	Timestamp  time.Time      `json:"timestamp"`
 	MessageID  string         `json:"messageId"`
 	ChannelID  string         `json:"channelId"`
 	MailType   MailType       `json:"mailType"`
 	Subject    string         `json:"subject,omitempty"`
 	Tags       []string       `json:"tags,omitempty"`
 	Metadata   map[string]any `json:"metadata,omitempty"`
+	Timestamp  time.Time      `json:"timestamp"`
 }
 
 // ProcessedWebhookPayload Payload delivered for the `processed` event.
 type ProcessedWebhookPayload struct {
 	EventType  string         `json:"eventType"`
 	Recipients []string       `json:"recipients"`
-	Timestamp  time.Time      `json:"timestamp"`
 	MessageID  string         `json:"messageId"`
 	ChannelID  string         `json:"channelId"`
 	MailType   MailType       `json:"mailType"`
 	Subject    string         `json:"subject,omitempty"`
 	Tags       []string       `json:"tags,omitempty"`
 	Metadata   map[string]any `json:"metadata,omitempty"`
+	Timestamp  time.Time      `json:"timestamp"`
 }
 
 // DeliveredWebhookPayload Payload delivered for the `delivered` event.
@@ -557,13 +562,13 @@ type DeliveredWebhookPayload struct {
 	EventType string         `json:"eventType"`
 	Recipient string         `json:"recipient"`
 	Details   any            `json:"details,omitempty"`
-	Timestamp time.Time      `json:"timestamp"`
 	MessageID string         `json:"messageId"`
 	ChannelID string         `json:"channelId"`
 	MailType  MailType       `json:"mailType"`
 	Subject   string         `json:"subject,omitempty"`
 	Tags      []string       `json:"tags,omitempty"`
 	Metadata  map[string]any `json:"metadata,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
 }
 
 // BouncedWebhookPayload Payload delivered for the `bounced` event.
@@ -571,13 +576,13 @@ type BouncedWebhookPayload struct {
 	EventType string         `json:"eventType"`
 	Recipient string         `json:"recipient"`
 	Details   any            `json:"details,omitempty"`
-	Timestamp time.Time      `json:"timestamp"`
 	MessageID string         `json:"messageId"`
 	ChannelID string         `json:"channelId"`
 	MailType  MailType       `json:"mailType"`
 	Subject   string         `json:"subject,omitempty"`
 	Tags      []string       `json:"tags,omitempty"`
 	Metadata  map[string]any `json:"metadata,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
 }
 
 // OpenedWebhookPayload Payload delivered for the `opened` event.
@@ -585,13 +590,13 @@ type OpenedWebhookPayload struct {
 	EventType string         `json:"eventType"`
 	Recipient string         `json:"recipient"`
 	Details   any            `json:"details,omitempty"`
-	Timestamp time.Time      `json:"timestamp"`
 	MessageID string         `json:"messageId"`
 	ChannelID string         `json:"channelId"`
 	MailType  MailType       `json:"mailType"`
 	Subject   string         `json:"subject,omitempty"`
 	Tags      []string       `json:"tags,omitempty"`
 	Metadata  map[string]any `json:"metadata,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
 }
 
 // ClickedWebhookPayload Payload delivered for the `clicked` event.
@@ -599,13 +604,13 @@ type ClickedWebhookPayload struct {
 	EventType string         `json:"eventType"`
 	Recipient string         `json:"recipient"`
 	Details   any            `json:"details,omitempty"`
-	Timestamp time.Time      `json:"timestamp"`
 	MessageID string         `json:"messageId"`
 	ChannelID string         `json:"channelId"`
 	MailType  MailType       `json:"mailType"`
 	Subject   string         `json:"subject,omitempty"`
 	Tags      []string       `json:"tags,omitempty"`
 	Metadata  map[string]any `json:"metadata,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
 }
 
 // ComplainedWebhookPayload Payload delivered for the `complained` event.
@@ -613,13 +618,13 @@ type ComplainedWebhookPayload struct {
 	EventType string         `json:"eventType"`
 	Recipient string         `json:"recipient"`
 	Details   any            `json:"details,omitempty"`
-	Timestamp time.Time      `json:"timestamp"`
 	MessageID string         `json:"messageId"`
 	ChannelID string         `json:"channelId"`
 	MailType  MailType       `json:"mailType"`
 	Subject   string         `json:"subject,omitempty"`
 	Tags      []string       `json:"tags,omitempty"`
 	Metadata  map[string]any `json:"metadata,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
 }
 
 // UnsubscribedWebhookPayload Payload delivered for the `unsubscribed` event.
@@ -627,13 +632,13 @@ type UnsubscribedWebhookPayload struct {
 	EventType string         `json:"eventType"`
 	Recipient string         `json:"recipient"`
 	Details   any            `json:"details,omitempty"`
-	Timestamp time.Time      `json:"timestamp"`
 	MessageID string         `json:"messageId"`
 	ChannelID string         `json:"channelId"`
 	MailType  MailType       `json:"mailType"`
 	Subject   string         `json:"subject,omitempty"`
 	Tags      []string       `json:"tags,omitempty"`
 	Metadata  map[string]any `json:"metadata,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
 }
 
 // ResubscribedWebhookPayload Payload delivered for the `resubscribed` event.
@@ -641,19 +646,63 @@ type ResubscribedWebhookPayload struct {
 	EventType string         `json:"eventType"`
 	Recipient string         `json:"recipient"`
 	Details   any            `json:"details,omitempty"`
-	Timestamp time.Time      `json:"timestamp"`
 	MessageID string         `json:"messageId"`
 	ChannelID string         `json:"channelId"`
 	MailType  MailType       `json:"mailType"`
 	Subject   string         `json:"subject,omitempty"`
 	Tags      []string       `json:"tags,omitempty"`
 	Metadata  map[string]any `json:"metadata,omitempty"`
+	Timestamp time.Time      `json:"timestamp"`
 }
 
 // RecipientEventFields Fields shared by per-recipient events (delivered, bounced, opened, clicked, complained, unsubscribed, resubscribed).
 type RecipientEventFields struct {
 	Recipient string `json:"recipient"`
 	Details   any    `json:"details,omitempty"`
+}
+
+// DomainPayloadCommon Fields common to every domain webhook payload.
+type DomainPayloadCommon struct {
+	DomainID      string    `json:"domainId,omitempty"`
+	DomainName    string    `json:"domainName,omitempty"`
+	DnsRecordHost string    `json:"dnsRecordHost,omitempty"`
+	Timestamp     time.Time `json:"timestamp,omitempty"`
+}
+
+// DomainKeyVerifiedPayload Payload delivered when a domain key is verified.
+type DomainKeyVerifiedPayload struct {
+	EventType     string    `json:"eventType"`
+	DomainID      string    `json:"domainId"`
+	DomainName    string    `json:"domainName"`
+	DnsRecordHost string    `json:"dnsRecordHost"`
+	Timestamp     time.Time `json:"timestamp"`
+}
+
+// DomainKeyVerificationFailedPayload Payload delivered when a domain key verification fails.
+type DomainKeyVerificationFailedPayload struct {
+	EventType     string    `json:"eventType"`
+	DomainID      string    `json:"domainId"`
+	DomainName    string    `json:"domainName"`
+	DnsRecordHost string    `json:"dnsRecordHost"`
+	Timestamp     time.Time `json:"timestamp"`
+}
+
+// ReturnPathDomainVerifiedPayload Payload delivered when a return path domain is verified.
+type ReturnPathDomainVerifiedPayload struct {
+	EventType     string    `json:"eventType"`
+	DomainID      string    `json:"domainId"`
+	DomainName    string    `json:"domainName"`
+	DnsRecordHost string    `json:"dnsRecordHost"`
+	Timestamp     time.Time `json:"timestamp"`
+}
+
+// ReturnPathDomainVerificationFailedPayload Payload delivered when a return path domain verification fails.
+type ReturnPathDomainVerificationFailedPayload struct {
+	EventType     string    `json:"eventType"`
+	DomainID      string    `json:"domainId"`
+	DomainName    string    `json:"domainName"`
+	DnsRecordHost string    `json:"dnsRecordHost"`
+	Timestamp     time.Time `json:"timestamp"`
 }
 
 // MessageDetailsResponseAttachment is an inline schema extracted from its parent type.

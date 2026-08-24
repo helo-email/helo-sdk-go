@@ -158,15 +158,19 @@ func AllSuppressionReasonValues() []SuppressionReason {
 type WebhookEvent string
 
 const (
-	WebhookEventAccepted     WebhookEvent = "accepted"
-	WebhookEventProcessed    WebhookEvent = "processed"
-	WebhookEventBounced      WebhookEvent = "bounced"
-	WebhookEventDelivered    WebhookEvent = "delivered"
-	WebhookEventOpened       WebhookEvent = "opened"
-	WebhookEventClicked      WebhookEvent = "clicked"
-	WebhookEventComplained   WebhookEvent = "complained"
-	WebhookEventUnsubscribed WebhookEvent = "unsubscribed"
-	WebhookEventResubscribed WebhookEvent = "resubscribed"
+	WebhookEventAccepted                           WebhookEvent = "accepted"
+	WebhookEventProcessed                          WebhookEvent = "processed"
+	WebhookEventBounced                            WebhookEvent = "bounced"
+	WebhookEventDelivered                          WebhookEvent = "delivered"
+	WebhookEventOpened                             WebhookEvent = "opened"
+	WebhookEventClicked                            WebhookEvent = "clicked"
+	WebhookEventComplained                         WebhookEvent = "complained"
+	WebhookEventUnsubscribed                       WebhookEvent = "unsubscribed"
+	WebhookEventResubscribed                       WebhookEvent = "resubscribed"
+	WebhookEventDomainKeyVerified                  WebhookEvent = "domain-key-verified"
+	WebhookEventDomainKeyVerificationFailed        WebhookEvent = "domain-key-verification-failed"
+	WebhookEventReturnPathDomainVerified           WebhookEvent = "return-path-domain-verified"
+	WebhookEventReturnPathDomainVerificationFailed WebhookEvent = "return-path-domain-verification-failed"
 )
 
 // AllWebhookEventValues returns all valid WebhookEvent values.
@@ -181,5 +185,9 @@ func AllWebhookEventValues() []WebhookEvent {
 		WebhookEventComplained,
 		WebhookEventUnsubscribed,
 		WebhookEventResubscribed,
+		WebhookEventDomainKeyVerified,
+		WebhookEventDomainKeyVerificationFailed,
+		WebhookEventReturnPathDomainVerified,
+		WebhookEventReturnPathDomainVerificationFailed,
 	}
 }
