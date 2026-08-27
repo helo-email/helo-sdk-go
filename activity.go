@@ -98,16 +98,16 @@ func (p *ActivityListEventsParams) toQuery() map[string]any {
 
 // ActivityListMessagesParams are the query parameters for ListMessages.
 type ActivityListMessagesParams struct {
-	ChannelID string    `json:"channelId,omitempty"`
-	After     int64     `json:"after,omitempty"`
-	StartDate time.Time `json:"startDate,omitempty"`
-	EndDate   time.Time `json:"endDate,omitempty"`
-	Limit     int       `json:"limit,omitempty"`
-	Recipient string    `json:"recipient,omitempty"`
-	Subject   string    `json:"subject,omitempty"`
-	Tags      []string  `json:"tags,omitempty"`
-	MailType  string    `json:"mailType,omitempty"`
-	Status    string    `json:"status,omitempty"`
+	ChannelID string        `json:"channelId,omitempty"`
+	After     int64         `json:"after,omitempty"`
+	StartDate time.Time     `json:"startDate,omitempty"`
+	EndDate   time.Time     `json:"endDate,omitempty"`
+	Limit     int           `json:"limit,omitempty"`
+	Recipient string        `json:"recipient,omitempty"`
+	Subject   string        `json:"subject,omitempty"`
+	Tags      []string      `json:"tags,omitempty"`
+	MailType  string        `json:"mailType,omitempty"`
+	Status    MessageStatus `json:"status,omitempty"`
 }
 
 // toQuery converts the params struct into a map suitable for the HTTP layer.

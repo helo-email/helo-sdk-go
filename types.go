@@ -118,7 +118,7 @@ type Message struct {
 	MailType     string            `json:"mailType"`
 	MailSource   string            `json:"mailSource"`
 	DeliveryType string            `json:"deliveryType"`
-	Status       string            `json:"status"`
+	Status       MessageStatus     `json:"status"`
 	Subject      string            `json:"subject"`
 	Recipients   []string          `json:"recipients"`
 	Tags         []string          `json:"tags,omitempty"`
@@ -143,7 +143,7 @@ type MessageDetailsResponse struct {
 	MailType     string                             `json:"mailType"`
 	MailSource   string                             `json:"mailSource"`
 	DeliveryType string                             `json:"deliveryType"`
-	Status       string                             `json:"status"`
+	Status       MessageStatus                      `json:"status"`
 	Subject      string                             `json:"subject"`
 	From         ActivityMailAddress                `json:"from"`
 	To           []ActivityMailAddress              `json:"to"`

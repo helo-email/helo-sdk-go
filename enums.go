@@ -62,6 +62,22 @@ func AllEventTypeValues() []EventType {
 	}
 }
 
+// MessageStatus is a string-based enum.
+type MessageStatus string
+
+const (
+	MessageStatusQueued MessageStatus = "queued"
+	MessageStatusSent   MessageStatus = "sent"
+)
+
+// AllMessageStatusValues returns all valid MessageStatus values.
+func AllMessageStatusValues() []MessageStatus {
+	return []MessageStatus{
+		MessageStatusQueued,
+		MessageStatusSent,
+	}
+}
+
 // DnsRecordStatus is a string-based enum.
 type DnsRecordStatus string
 

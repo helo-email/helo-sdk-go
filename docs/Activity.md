@@ -91,7 +91,7 @@ func main() {
 		Subject: "example",
 		Tags: []string{"example1", "example2"},
 		MailType: "transactional",
-		Status: "sent",
+		Status: helo.MessageStatusQueued,
 	}
 	result, err := client.Activity.ListMessages(ctx, params)
 	if err != nil {

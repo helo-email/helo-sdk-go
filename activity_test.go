@@ -79,7 +79,7 @@ func TestActivity_ListMessages(t *testing.T) {
 		Subject:   "example",
 		Tags:      []string{"example1", "example2"},
 		MailType:  "transactional",
-		Status:    "sent",
+		Status:    MessageStatusQueued,
 	}
 	result, err := client.Activity.ListMessages(context.Background(), params)
 	if err != nil {
