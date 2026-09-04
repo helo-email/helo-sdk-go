@@ -66,7 +66,7 @@ func TestWebhooks_Create(t *testing.T) {
 
 	params := &CreateWebhookRequest{
 		URL:       "test-url",
-		Events:    []WebhookEvent{WebhookEventAccepted, WebhookEventProcessed},
+		Events:    []WebhookEvent{WebhookEventMessageAccepted, WebhookEventMessageProcessed},
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		Enabled:   true,
 	}
@@ -131,7 +131,7 @@ func TestWebhooks_Update(t *testing.T) {
 
 	params := &UpdateWebhookRequest{
 		URL:       "test-url",
-		Events:    []WebhookEvent{WebhookEventAccepted, WebhookEventProcessed},
+		Events:    []WebhookEvent{WebhookEventMessageAccepted, WebhookEventMessageProcessed},
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		Enabled:   true,
 	}

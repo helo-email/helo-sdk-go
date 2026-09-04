@@ -174,15 +174,15 @@ func AllSuppressionReasonValues() []SuppressionReason {
 type WebhookEvent string
 
 const (
-	WebhookEventAccepted                           WebhookEvent = "accepted"
-	WebhookEventProcessed                          WebhookEvent = "processed"
-	WebhookEventBounced                            WebhookEvent = "bounced"
-	WebhookEventDelivered                          WebhookEvent = "delivered"
-	WebhookEventOpened                             WebhookEvent = "opened"
-	WebhookEventClicked                            WebhookEvent = "clicked"
-	WebhookEventComplained                         WebhookEvent = "complained"
-	WebhookEventUnsubscribed                       WebhookEvent = "unsubscribed"
-	WebhookEventResubscribed                       WebhookEvent = "resubscribed"
+	WebhookEventMessageAccepted                    WebhookEvent = "message-accepted"
+	WebhookEventMessageProcessed                   WebhookEvent = "message-processed"
+	WebhookEventEmailDelivered                     WebhookEvent = "email-delivered"
+	WebhookEventEmailBounced                       WebhookEvent = "email-bounced"
+	WebhookEventEmailOpened                        WebhookEvent = "email-opened"
+	WebhookEventLinkClicked                        WebhookEvent = "link-clicked"
+	WebhookEventRecipientComplained                WebhookEvent = "recipient-complained"
+	WebhookEventRecipientUnsubscribed              WebhookEvent = "recipient-unsubscribed"
+	WebhookEventRecipientResubscribed              WebhookEvent = "recipient-resubscribed"
 	WebhookEventDomainKeyVerified                  WebhookEvent = "domain-key-verified"
 	WebhookEventDomainKeyVerificationFailed        WebhookEvent = "domain-key-verification-failed"
 	WebhookEventReturnPathDomainVerified           WebhookEvent = "return-path-domain-verified"
@@ -192,15 +192,15 @@ const (
 // AllWebhookEventValues returns all valid WebhookEvent values.
 func AllWebhookEventValues() []WebhookEvent {
 	return []WebhookEvent{
-		WebhookEventAccepted,
-		WebhookEventProcessed,
-		WebhookEventBounced,
-		WebhookEventDelivered,
-		WebhookEventOpened,
-		WebhookEventClicked,
-		WebhookEventComplained,
-		WebhookEventUnsubscribed,
-		WebhookEventResubscribed,
+		WebhookEventMessageAccepted,
+		WebhookEventMessageProcessed,
+		WebhookEventEmailDelivered,
+		WebhookEventEmailBounced,
+		WebhookEventEmailOpened,
+		WebhookEventLinkClicked,
+		WebhookEventRecipientComplained,
+		WebhookEventRecipientUnsubscribed,
+		WebhookEventRecipientResubscribed,
 		WebhookEventDomainKeyVerified,
 		WebhookEventDomainKeyVerificationFailed,
 		WebhookEventReturnPathDomainVerified,

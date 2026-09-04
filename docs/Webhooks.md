@@ -76,7 +76,7 @@ func main() {
 
 	params := &helo.CreateWebhookRequest{
 		URL: "test-url",
-		Events: []helo.WebhookEvent{helo.WebhookEventAccepted, helo.WebhookEventProcessed},
+		Events: []helo.WebhookEvent{helo.WebhookEventMessageAccepted, helo.WebhookEventMessageProcessed},
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		Enabled: true,
 	}
@@ -150,7 +150,7 @@ func main() {
 
 	params := &helo.UpdateWebhookRequest{
 		URL: "test-url",
-		Events: []helo.WebhookEvent{helo.WebhookEventAccepted, helo.WebhookEventProcessed},
+		Events: []helo.WebhookEvent{helo.WebhookEventMessageAccepted, helo.WebhookEventMessageProcessed},
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		Enabled: true,
 	}

@@ -531,8 +531,8 @@ type DeliveryWebhookPayloadCommon struct {
 	Timestamp time.Time      `json:"timestamp,omitempty"`
 }
 
-// AcceptedWebhookPayload Payload delivered for the `accepted` event.
-type AcceptedWebhookPayload struct {
+// MessageAcceptedWebhookPayload Payload delivered for the `message-accepted` event.
+type MessageAcceptedWebhookPayload struct {
 	EventType  string         `json:"eventType"`
 	Recipients []string       `json:"recipients"`
 	MessageID  string         `json:"messageId"`
@@ -544,8 +544,8 @@ type AcceptedWebhookPayload struct {
 	Timestamp  time.Time      `json:"timestamp"`
 }
 
-// ProcessedWebhookPayload Payload delivered for the `processed` event.
-type ProcessedWebhookPayload struct {
+// MessageProcessedWebhookPayload Payload delivered for the `message-processed` event.
+type MessageProcessedWebhookPayload struct {
 	EventType  string         `json:"eventType"`
 	Recipients []string       `json:"recipients"`
 	MessageID  string         `json:"messageId"`
@@ -557,8 +557,8 @@ type ProcessedWebhookPayload struct {
 	Timestamp  time.Time      `json:"timestamp"`
 }
 
-// DeliveredWebhookPayload Payload delivered for the `delivered` event.
-type DeliveredWebhookPayload struct {
+// EmailDeliveredWebhookPayload Payload delivered for the `email-delivered` event.
+type EmailDeliveredWebhookPayload struct {
 	EventType string            `json:"eventType"`
 	Details   *DeliveredDetails `json:"details,omitempty"`
 	Recipient string            `json:"recipient"`
@@ -571,8 +571,8 @@ type DeliveredWebhookPayload struct {
 	Timestamp time.Time         `json:"timestamp"`
 }
 
-// BouncedWebhookPayload Payload delivered for the `bounced` event.
-type BouncedWebhookPayload struct {
+// EmailBouncedWebhookPayload Payload delivered for the `email-bounced` event.
+type EmailBouncedWebhookPayload struct {
 	EventType string          `json:"eventType"`
 	Details   *BouncedDetails `json:"details,omitempty"`
 	Recipient string          `json:"recipient"`
@@ -585,8 +585,8 @@ type BouncedWebhookPayload struct {
 	Timestamp time.Time       `json:"timestamp"`
 }
 
-// OpenedWebhookPayload Payload delivered for the `opened` event.
-type OpenedWebhookPayload struct {
+// EmailOpenedWebhookPayload Payload delivered for the `email-opened` event.
+type EmailOpenedWebhookPayload struct {
 	EventType string         `json:"eventType"`
 	Details   *OpenedDetails `json:"details,omitempty"`
 	Recipient string         `json:"recipient"`
@@ -599,8 +599,8 @@ type OpenedWebhookPayload struct {
 	Timestamp time.Time      `json:"timestamp"`
 }
 
-// ClickedWebhookPayload Payload delivered for the `clicked` event.
-type ClickedWebhookPayload struct {
+// LinkClickedWebhookPayload Payload delivered for the `link-clicked` event.
+type LinkClickedWebhookPayload struct {
 	EventType string          `json:"eventType"`
 	Details   *ClickedDetails `json:"details,omitempty"`
 	Recipient string          `json:"recipient"`
@@ -613,8 +613,8 @@ type ClickedWebhookPayload struct {
 	Timestamp time.Time       `json:"timestamp"`
 }
 
-// ComplainedWebhookPayload Payload delivered for the `complained` event.
-type ComplainedWebhookPayload struct {
+// RecipientComplainedWebhookPayload Payload delivered for the `recipient-complained` event.
+type RecipientComplainedWebhookPayload struct {
 	EventType string             `json:"eventType"`
 	Details   *ComplainedDetails `json:"details,omitempty"`
 	Recipient string             `json:"recipient"`
@@ -627,8 +627,8 @@ type ComplainedWebhookPayload struct {
 	Timestamp time.Time          `json:"timestamp"`
 }
 
-// UnsubscribedWebhookPayload Payload delivered for the `unsubscribed` event.
-type UnsubscribedWebhookPayload struct {
+// RecipientUnsubscribedWebhookPayload Payload delivered for the `recipient-unsubscribed` event.
+type RecipientUnsubscribedWebhookPayload struct {
 	EventType string               `json:"eventType"`
 	Details   *UnsubscribedDetails `json:"details,omitempty"`
 	Recipient string               `json:"recipient"`
@@ -641,8 +641,8 @@ type UnsubscribedWebhookPayload struct {
 	Timestamp time.Time            `json:"timestamp"`
 }
 
-// ResubscribedWebhookPayload Payload delivered for the `resubscribed` event.
-type ResubscribedWebhookPayload struct {
+// RecipientResubscribedWebhookPayload Payload delivered for the `recipient-resubscribed` event.
+type RecipientResubscribedWebhookPayload struct {
 	EventType string               `json:"eventType"`
 	Details   *ResubscribedDetails `json:"details,omitempty"`
 	Recipient string               `json:"recipient"`
@@ -655,7 +655,7 @@ type ResubscribedWebhookPayload struct {
 	Timestamp time.Time            `json:"timestamp"`
 }
 
-// RecipientEventFields Fields shared by per-recipient events (delivered, bounced, opened, clicked, complained, unsubscribed, resubscribed).
+// RecipientEventFields Fields shared by per-recipient sending events (email-delivered,  email-bounced, email-opened, link-clicked, recipient-complained,  recipient-unsubscribed, recipient-resubscribed).
 type RecipientEventFields struct {
 	Recipient string `json:"recipient"`
 }
@@ -673,7 +673,7 @@ type DeviceDetails struct {
 	Model  string `json:"model,omitempty"`
 }
 
-// EngagementDetails Fields shared by the engagement events (opened, clicked). Individual fields are omitted when the information is unavailable.
+// EngagementDetails Fields shared by the engagement events (email-opened, link-clicked).  Individual fields are omitted when the information is unavailable.
 type EngagementDetails struct {
 	Ip          string         `json:"ip,omitempty"`
 	Country     string         `json:"country,omitempty"`
@@ -682,19 +682,19 @@ type EngagementDetails struct {
 	Device      *DeviceDetails `json:"device,omitempty"`
 }
 
-// DeliveredDetails Details of a `delivered` event.
+// DeliveredDetails Details of an `email-delivered` event.
 type DeliveredDetails struct {
 	Response string `json:"response,omitempty"`
 }
 
-// BouncedDetails Details of a `bounced` event.
+// BouncedDetails Details of an `email-bounced` event.
 type BouncedDetails struct {
 	Type    string `json:"type,omitempty"`
 	SubType string `json:"subType,omitempty"`
 	Code    string `json:"code,omitempty"`
 }
 
-// OpenedDetails Details of an `opened` event.
+// OpenedDetails Details of an `email-opened` event.
 type OpenedDetails struct {
 	Ip          string         `json:"ip,omitempty"`
 	Country     string         `json:"country,omitempty"`
@@ -703,7 +703,7 @@ type OpenedDetails struct {
 	Device      *DeviceDetails `json:"device,omitempty"`
 }
 
-// ClickedDetails Details of a `clicked` event.
+// ClickedDetails Details of a `link-clicked` event.
 type ClickedDetails struct {
 	Link        string         `json:"link,omitempty"`
 	Ip          string         `json:"ip,omitempty"`
@@ -713,17 +713,17 @@ type ClickedDetails struct {
 	Device      *DeviceDetails `json:"device,omitempty"`
 }
 
-// ComplainedDetails Details of a `complained` event.
+// ComplainedDetails Details of a `recipient-complained` event.
 type ComplainedDetails struct {
 	Type string `json:"type,omitempty"`
 }
 
-// UnsubscribedDetails Details of an `unsubscribed` event.
+// UnsubscribedDetails Details of a `recipient-unsubscribed` event.
 type UnsubscribedDetails struct {
 	Ip string `json:"ip,omitempty"`
 }
 
-// ResubscribedDetails Details of a `resubscribed` event.
+// ResubscribedDetails Details of a `recipient-resubscribed` event.
 type ResubscribedDetails struct {
 	Ip string `json:"ip,omitempty"`
 }
