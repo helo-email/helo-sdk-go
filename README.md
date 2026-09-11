@@ -1,6 +1,6 @@
 # Helo Go SDK
 
-Helo API
+Helo Email API (https://helohq.com)
 
 ## Installation
 

@@ -8,14 +8,64 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"runtime"
+	"runtime/debug"
 	"strings"
 )
+
+// moduleImportPath is this module's import path, used to find the SDK's own
+// version in the build info of whatever binary embeds it.
+const moduleImportPath = "github.com/helo-email/helo-sdk-go"
+
+// userAgentProduct names the SDK in the User-Agent header.
+const userAgentProduct = "helo-sdk-go"
 
 // Client is the HTTP client used by all resource services.
 type Client struct {
 	BaseURL    string
 	APIKey     string
 	HTTPClient *http.Client
+
+	// UserAgent is sent with every request. It defaults to defaultUserAgent();
+	// a program wrapping the SDK (the CLI, say) sets its own via WithUserAgent.
+	UserAgent string
+}
+
+// defaultUserAgent identifies the SDK and the Go runtime carrying it. There is
+// no generated version constant — the module is versioned by git tag — so the
+// version is read back from the build info the toolchain embeds.
+var defaultUserAgent = buildUserAgent()
+
+func buildUserAgent() string {
+	version := "unknown"
+	if info, ok := debug.ReadBuildInfo(); ok {
+		if info.Main.Path == moduleImportPath && info.Main.Version != "" {
+			version = info.Main.Version
+		}
+		for _, dep := range info.Deps {
+			if dep.Path == moduleImportPath && dep.Version != "" {
+				version = dep.Version
+				break
+			}
+		}
+	}
+	return fmt.Sprintf("%s/%s (%s; %s/%s)", userAgentProduct, sanitizeVersion(version), runtime.Version(), runtime.GOOS, runtime.GOARCH)
+}
+
+// A module version can be a placeholder like "(devel)" for an untagged local
+// build. The parentheses there would open a comment the User-Agent never
+// closes, so strip anything that is not a token character.
+func sanitizeVersion(version string) string {
+	cleaned := strings.Map(func(r rune) rune {
+		if r == '(' || r == ')' || r == ' ' {
+			return -1
+		}
+		return r
+	}, version)
+	if cleaned == "" {
+		return "unknown"
+	}
+	return cleaned
 }
 
 // requestOptions carries optional body, query and header parameters for a single call.
@@ -91,6 +141,11 @@ func (c *Client) request(ctx context.Context, method, path string, out any, opts
 	}
 
 	req.Header.Set("Accept", "application/json")
+	if c.UserAgent != "" {
+		req.Header.Set("User-Agent", c.UserAgent)
+	} else {
+		req.Header.Set("User-Agent", defaultUserAgent)
+	}
 	if c.APIKey != "" {
 		req.Header.Set("Authorization", "Bearer "+c.APIKey)
 	}

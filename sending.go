@@ -9,8 +9,8 @@ type SendingService struct {
 	client *Client
 }
 
-// Transactional Send a transactional email
-func (s *SendingService) Transactional(ctx context.Context, params *SendMessageRequest, opts *SendingTransactionalOptions) (*SendMessageAcceptedResponse, error) {
+// SendTransactional Send a transactional email
+func (s *SendingService) SendTransactional(ctx context.Context, params *SendMessageRequest, opts *SendingSendTransactionalOptions) (*SendMessageAcceptedResponse, error) {
 	out := new(SendMessageAcceptedResponse)
 	if err := s.client.request(ctx, "POST", "/send/transactional", out, withBody(params), withHeaders(opts.toHeaders())); err != nil {
 		return nil, err
@@ -18,8 +18,8 @@ func (s *SendingService) Transactional(ctx context.Context, params *SendMessageR
 	return out, nil
 }
 
-// TransactionalBatch Send transactional emails in batch
-func (s *SendingService) TransactionalBatch(ctx context.Context, params *SendMessageBatchRequest, opts *SendingTransactionalBatchOptions) (*SendMessageBatchResponse, error) {
+// SendTransactionalBatch Send transactional emails in batch
+func (s *SendingService) SendTransactionalBatch(ctx context.Context, params *SendMessageBatchRequest, opts *SendingSendTransactionalBatchOptions) (*SendMessageBatchResponse, error) {
 	out := new(SendMessageBatchResponse)
 	if err := s.client.request(ctx, "POST", "/send/transactional/batch", out, withBody(params), withHeaders(opts.toHeaders())); err != nil {
 		return nil, err
@@ -27,8 +27,8 @@ func (s *SendingService) TransactionalBatch(ctx context.Context, params *SendMes
 	return out, nil
 }
 
-// Broadcast Send a broadcast email
-func (s *SendingService) Broadcast(ctx context.Context, params *SendBroadcastRequest, opts *SendingBroadcastOptions) (*SendBroadcastResponse, error) {
+// SendBroadcast SendBroadcast operation
+func (s *SendingService) SendBroadcast(ctx context.Context, params *SendBroadcastRequest, opts *SendingSendBroadcastOptions) (*SendBroadcastResponse, error) {
 	out := new(SendBroadcastResponse)
 	if err := s.client.request(ctx, "POST", "/send/broadcast", out, withBody(params), withHeaders(opts.toHeaders())); err != nil {
 		return nil, err
@@ -36,8 +36,8 @@ func (s *SendingService) Broadcast(ctx context.Context, params *SendBroadcastReq
 	return out, nil
 }
 
-// BroadcastMessage Send a single broadcast email
-func (s *SendingService) BroadcastMessage(ctx context.Context, params *SendMessageRequest, opts *SendingBroadcastMessageOptions) (*SendMessageAcceptedResponse, error) {
+// SendBroadcastMessage Send a single broadcast email
+func (s *SendingService) SendBroadcastMessage(ctx context.Context, params *SendMessageRequest, opts *SendingSendBroadcastMessageOptions) (*SendMessageAcceptedResponse, error) {
 	out := new(SendMessageAcceptedResponse)
 	if err := s.client.request(ctx, "POST", "/send/broadcast/message", out, withBody(params), withHeaders(opts.toHeaders())); err != nil {
 		return nil, err
@@ -45,8 +45,8 @@ func (s *SendingService) BroadcastMessage(ctx context.Context, params *SendMessa
 	return out, nil
 }
 
-// SendingTransactionalOptions are the optional headers for Transactional.
-type SendingTransactionalOptions struct {
+// SendingSendTransactionalOptions are the optional headers for SendTransactional.
+type SendingSendTransactionalOptions struct {
 	// ChannelID Used to specify a channel ID for sending when using an account-level API credential.
 	ChannelID string `json:"-"`
 	// IdempotencyKey A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
@@ -55,7 +55,7 @@ type SendingTransactionalOptions struct {
 
 // toHeaders converts the options struct into a header map for the HTTP layer.
 // A nil receiver or zero-valued fields contribute no headers.
-func (o *SendingTransactionalOptions) toHeaders() map[string]string {
+func (o *SendingSendTransactionalOptions) toHeaders() map[string]string {
 	if o == nil {
 		return nil
 	}
@@ -69,8 +69,8 @@ func (o *SendingTransactionalOptions) toHeaders() map[string]string {
 	return h
 }
 
-// SendingTransactionalBatchOptions are the optional headers for TransactionalBatch.
-type SendingTransactionalBatchOptions struct {
+// SendingSendTransactionalBatchOptions are the optional headers for SendTransactionalBatch.
+type SendingSendTransactionalBatchOptions struct {
 	// ChannelID Used to specify a channel ID for sending when using an account-level API credential.
 	ChannelID string `json:"-"`
 	// IdempotencyKey A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
@@ -79,7 +79,7 @@ type SendingTransactionalBatchOptions struct {
 
 // toHeaders converts the options struct into a header map for the HTTP layer.
 // A nil receiver or zero-valued fields contribute no headers.
-func (o *SendingTransactionalBatchOptions) toHeaders() map[string]string {
+func (o *SendingSendTransactionalBatchOptions) toHeaders() map[string]string {
 	if o == nil {
 		return nil
 	}
@@ -93,8 +93,8 @@ func (o *SendingTransactionalBatchOptions) toHeaders() map[string]string {
 	return h
 }
 
-// SendingBroadcastOptions are the optional headers for Broadcast.
-type SendingBroadcastOptions struct {
+// SendingSendBroadcastOptions are the optional headers for SendBroadcast.
+type SendingSendBroadcastOptions struct {
 	// ChannelID Used to specify a channel ID for sending when using an account-level API credential.
 	ChannelID string `json:"-"`
 	// IdempotencyKey A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
@@ -103,7 +103,7 @@ type SendingBroadcastOptions struct {
 
 // toHeaders converts the options struct into a header map for the HTTP layer.
 // A nil receiver or zero-valued fields contribute no headers.
-func (o *SendingBroadcastOptions) toHeaders() map[string]string {
+func (o *SendingSendBroadcastOptions) toHeaders() map[string]string {
 	if o == nil {
 		return nil
 	}
@@ -117,8 +117,8 @@ func (o *SendingBroadcastOptions) toHeaders() map[string]string {
 	return h
 }
 
-// SendingBroadcastMessageOptions are the optional headers for BroadcastMessage.
-type SendingBroadcastMessageOptions struct {
+// SendingSendBroadcastMessageOptions are the optional headers for SendBroadcastMessage.
+type SendingSendBroadcastMessageOptions struct {
 	// ChannelID Used to specify a channel ID for sending when using an account-level API credential.
 	ChannelID string `json:"-"`
 	// IdempotencyKey A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
@@ -127,7 +127,7 @@ type SendingBroadcastMessageOptions struct {
 
 // toHeaders converts the options struct into a header map for the HTTP layer.
 // A nil receiver or zero-valued fields contribute no headers.
-func (o *SendingBroadcastMessageOptions) toHeaders() map[string]string {
+func (o *SendingSendBroadcastMessageOptions) toHeaders() map[string]string {
 	if o == nil {
 		return nil
 	}

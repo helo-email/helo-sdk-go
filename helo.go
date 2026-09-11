@@ -33,6 +33,12 @@ func WithHTTPClient(httpClient *http.Client) HeloOption {
 	return func(c *Helo) { c.client.HTTPClient = httpClient }
 }
 
+// WithUserAgent replaces the SDK's own User-Agent, so a program built on top of
+// it can identify itself instead.
+func WithUserAgent(userAgent string) HeloOption {
+	return func(c *Helo) { c.client.UserAgent = userAgent }
+}
+
 // NewHelo creates a new Helo client.
 func NewHelo(apiKey string, opts ...HeloOption) *Helo {
 	c := &Helo{
@@ -40,6 +46,7 @@ func NewHelo(apiKey string, opts ...HeloOption) *Helo {
 			BaseURL:    DefaultBaseURL,
 			APIKey:     apiKey,
 			HTTPClient: http.DefaultClient,
+			UserAgent:  defaultUserAgent,
 		},
 	}
 

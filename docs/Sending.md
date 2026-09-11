@@ -2,15 +2,15 @@
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**Transactional**](Sending.md#transactional) | **POST** /send/transactional | Send a transactional email |
-| [**TransactionalBatch**](Sending.md#transactionalbatch) | **POST** /send/transactional/batch | Send transactional emails in batch |
-| [**Broadcast**](Sending.md#broadcast) | **POST** /send/broadcast | Send a broadcast email |
-| [**BroadcastMessage**](Sending.md#broadcastmessage) | **POST** /send/broadcast/message | Send a single broadcast email |
+| [**SendTransactional**](Sending.md#sendtransactional) | **POST** /send/transactional | Send a transactional email |
+| [**SendTransactionalBatch**](Sending.md#sendtransactionalbatch) | **POST** /send/transactional/batch | Send transactional emails in batch |
+| [**SendBroadcast**](Sending.md#sendbroadcast) | **POST** /send/broadcast | SendBroadcast operation |
+| [**SendBroadcastMessage**](Sending.md#sendbroadcastmessage) | **POST** /send/broadcast/message | Send a single broadcast email |
 
 
-## Transactional
+## SendTransactional
 
-> Transactional(ctx, params, opts) (*SendMessageAcceptedResponse, error)
+> SendTransactional(ctx, params, opts) (*SendMessageAcceptedResponse, error)
 
 Send a transactional email
 
@@ -18,7 +18,7 @@ Sends a single transactional email such as receipts, confirmations, or notificat
 
 ### Example
 
-```go Sending_transactional
+```go Sending_sendTransactional
 package main
 
 import (
@@ -41,11 +41,11 @@ func main() {
 		Text: "This is a test message, delivered with <3 by Helo.",
 		Tags: []string{"welcome", "onboarding"},
 	}
-	opts := &helo.SendingTransactionalOptions{
+	opts := &helo.SendingSendTransactionalOptions{
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		IdempotencyKey: "example",
 	}
-	result, err := client.Sending.Transactional(ctx, params, opts)
+	result, err := client.Sending.SendTransactional(ctx, params, opts)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -54,9 +54,9 @@ func main() {
 ```
 
 
-## TransactionalBatch
+## SendTransactionalBatch
 
-> TransactionalBatch(ctx, params, opts) (*SendMessageBatchResponse, error)
+> SendTransactionalBatch(ctx, params, opts) (*SendMessageBatchResponse, error)
 
 Send transactional emails in batch
 
@@ -64,7 +64,7 @@ Sends multiple transactional emails in a single API request for better performan
 
 ### Example
 
-```go Sending_transactionalBatch
+```go Sending_sendTransactionalBatch
 package main
 
 import (
@@ -80,13 +80,13 @@ func main() {
 	ctx := context.Background()
 
 	params := &helo.SendMessageBatchRequest{
-		Requests: []helo.SendMessageRequest{{From: helo.MailAddress{Email: "test@example.com", Name: "test-name"}, To: []helo.MailAddress{{Email: "test@example.com", Name: "test-name"}}, Subject: "test-subject", Html: "test-html", Text: "test-text", Tags: []string{"example1", "example2"}}},
+		Requests: []helo.SendMessageRequest{{From: helo.MailAddress{Email: "from@yourdomain.com", Name: "From name"}, To: []helo.MailAddress{{Email: "to@example.com", Name: "To name"}}, Subject: "Hello from Helo", Html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", Text: "This is a test message, delivered with <3 by Helo.", Tags: []string{"welcome", "onboarding"}}},
 	}
-	opts := &helo.SendingTransactionalBatchOptions{
+	opts := &helo.SendingSendTransactionalBatchOptions{
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		IdempotencyKey: "example",
 	}
-	result, err := client.Sending.TransactionalBatch(ctx, params, opts)
+	result, err := client.Sending.SendTransactionalBatch(ctx, params, opts)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -95,17 +95,15 @@ func main() {
 ```
 
 
-## Broadcast
+## SendBroadcast
 
-> Broadcast(ctx, params, opts) (*SendBroadcastResponse, error)
+> SendBroadcast(ctx, params, opts) (*SendBroadcastResponse, error)
 
-Send a broadcast email
-
-Sends a broadcast email to multiple recipients for marketing or announcement purposes.
+SendBroadcast operation
 
 ### Example
 
-```go Sending_broadcast
+```go Sending_sendBroadcast
 package main
 
 import (
@@ -126,11 +124,11 @@ func main() {
 		Tags: []string{"example1", "example2"},
 		Messages: []helo.SendBroadcastRequestMessage{{To: []helo.MailAddress{{Email: "test@example.com", Name: "test-name"}}, Tags: []string{"example1", "example2"}}},
 	}
-	opts := &helo.SendingBroadcastOptions{
+	opts := &helo.SendingSendBroadcastOptions{
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		IdempotencyKey: "example",
 	}
-	result, err := client.Sending.Broadcast(ctx, params, opts)
+	result, err := client.Sending.SendBroadcast(ctx, params, opts)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -139,9 +137,9 @@ func main() {
 ```
 
 
-## BroadcastMessage
+## SendBroadcastMessage
 
-> BroadcastMessage(ctx, params, opts) (*SendMessageAcceptedResponse, error)
+> SendBroadcastMessage(ctx, params, opts) (*SendMessageAcceptedResponse, error)
 
 Send a single broadcast email
 
@@ -149,7 +147,7 @@ Sends a single broadcast email message.
 
 ### Example
 
-```go Sending_broadcastMessage
+```go Sending_sendBroadcastMessage
 package main
 
 import (
@@ -172,11 +170,11 @@ func main() {
 		Text: "This is a test message, delivered with <3 by Helo.",
 		Tags: []string{"welcome", "onboarding"},
 	}
-	opts := &helo.SendingBroadcastMessageOptions{
+	opts := &helo.SendingSendBroadcastMessageOptions{
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		IdempotencyKey: "example",
 	}
-	result, err := client.Sending.BroadcastMessage(ctx, params, opts)
+	result, err := client.Sending.SendBroadcastMessage(ctx, params, opts)
 	if err != nil {
 		log.Fatal(err)
 	}
