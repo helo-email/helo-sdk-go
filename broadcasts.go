@@ -3,6 +3,7 @@ package helo
 import (
 	"context"
 	"fmt"
+	"time"
 )
 
 // BroadcastsService exposes operations on the Broadcasts resource.
@@ -51,6 +52,8 @@ type BroadcastsListParams struct {
 	ChannelID string          `json:"channelId,omitempty"`
 	Status    BroadcastStatus `json:"status,omitempty"`
 	Subject   string          `json:"subject,omitempty"`
+	From      time.Time       `json:"from,omitempty"`
+	To        time.Time       `json:"to,omitempty"`
 	Limit     int             `json:"limit,omitempty"`
 	Offset    int             `json:"offset,omitempty"`
 }
@@ -68,6 +71,12 @@ func (p *BroadcastsListParams) toQuery() map[string]any {
 	}
 	if p.Subject != "" {
 		q["subject"] = p.Subject
+	}
+	if !p.From.IsZero() {
+		q["from"] = p.From.Format(time.RFC3339)
+	}
+	if !p.To.IsZero() {
+		q["to"] = p.To.Format(time.RFC3339)
 	}
 	if p.Limit != 0 {
 		q["limit"] = p.Limit

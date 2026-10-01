@@ -25,6 +25,7 @@ import (
 	"context"
 	"log"
 	"os"
+	"time"
 
 	"github.com/helo-email/helo-sdk-go"
 )
@@ -37,6 +38,8 @@ func main() {
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		Status: helo.BroadcastStatusAccepted,
 		Subject: "example",
+		From: time.Now(),
+		To: time.Now(),
 		Limit: 10,
 		Offset: 10,
 	}

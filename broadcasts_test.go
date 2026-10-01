@@ -6,6 +6,7 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+	"time"
 )
 
 func TestBroadcasts_List(t *testing.T) {
@@ -31,6 +32,8 @@ func TestBroadcasts_List(t *testing.T) {
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
 		Status:    BroadcastStatusAccepted,
 		Subject:   "example",
+		From:      time.Now(),
+		To:        time.Now(),
 		Limit:     10,
 		Offset:    10,
 	}
