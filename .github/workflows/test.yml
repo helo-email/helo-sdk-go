@@ -2,6 +2,7 @@ name: Tests
 
 on:
   pull_request:
+  workflow_call: # release.yml runs these before releasing
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
