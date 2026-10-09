@@ -27,7 +27,7 @@ func (s *SendingService) SendTransactionalBatch(ctx context.Context, params *Sen
 	return out, nil
 }
 
-// SendBroadcast SendBroadcast operation
+// SendBroadcast Send a broadcast
 func (s *SendingService) SendBroadcast(ctx context.Context, params *SendBroadcastRequest, opts *SendingSendBroadcastOptions) (*SendBroadcastResponse, error) {
 	out := new(SendBroadcastResponse)
 	if err := s.client.request(ctx, "POST", "/send/broadcast", out, withBody(params), withHeaders(opts.toHeaders())); err != nil {

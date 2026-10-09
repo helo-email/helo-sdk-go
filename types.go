@@ -795,7 +795,8 @@ type MessageDetailsResponseEvent struct {
 
 // SendBroadcastRequestTemplate is an inline schema extracted from its parent type.
 type SendBroadcastRequestTemplate struct {
-	Subject      string         `json:"subject"`
+	ID           string         `json:"id,omitempty"`
+	Subject      string         `json:"subject,omitempty"`
 	Html         string         `json:"html,omitempty"`
 	Text         string         `json:"text,omitempty"`
 	InlineStyles bool           `json:"inlineStyles,omitempty"`
@@ -821,6 +822,7 @@ type SendBroadcastRequestMessage struct {
 
 // SendMessageRequestTemplate is an inline schema extracted from its parent type.
 type SendMessageRequestTemplate struct {
+	ID           string         `json:"id,omitempty"`
 	Subject      string         `json:"subject,omitempty"`
 	Html         string         `json:"html,omitempty"`
 	Text         string         `json:"text,omitempty"`

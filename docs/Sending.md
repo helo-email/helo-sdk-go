@@ -4,7 +4,7 @@
 | ------ | ------------ | ----------- |
 | [**SendTransactional**](Sending.md#sendtransactional) | **POST** /send/transactional | Send a transactional email |
 | [**SendTransactionalBatch**](Sending.md#sendtransactionalbatch) | **POST** /send/transactional/batch | Send transactional emails in batch |
-| [**SendBroadcast**](Sending.md#sendbroadcast) | **POST** /send/broadcast | SendBroadcast operation |
+| [**SendBroadcast**](Sending.md#sendbroadcast) | **POST** /send/broadcast | Send a broadcast |
 | [**SendBroadcastMessage**](Sending.md#sendbroadcastmessage) | **POST** /send/broadcast/message | Send a single broadcast email |
 
 
@@ -99,7 +99,9 @@ func main() {
 
 > SendBroadcast(ctx, params, opts) (*SendBroadcastResponse, error)
 
-SendBroadcast operation
+Send a broadcast
+
+Sends a broadcast of multiple messages for marketing or announcement purposes.
 
 ### Example
 
@@ -120,7 +122,7 @@ func main() {
 
 	params := &helo.SendBroadcastRequest{
 		From: helo.MailAddress{Email: "test@example.com", Name: "test-name"},
-		Template: helo.SendBroadcastRequestTemplate{Subject: "test-subject", Html: "test-html", Text: "test-text", InlineStyles: true},
+		Template: helo.SendBroadcastRequestTemplate{ID: "550e8400-e29b-41d4-a716-446655440000", Subject: "test-subject", Html: "test-html", Text: "test-text", InlineStyles: true},
 		Tags: []string{"example1", "example2"},
 		Messages: []helo.SendBroadcastRequestMessage{{To: []helo.MailAddress{{Email: "test@example.com", Name: "test-name"}}, Tags: []string{"example1", "example2"}}},
 	}
