@@ -78,7 +78,7 @@ func main() {
 		URL: "test-url",
 		Events: []helo.WebhookEvent{helo.WebhookEventMessageAccepted, helo.WebhookEventMessageProcessed},
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
-		Enabled: true,
+		Enabled: helo.Bool(true),
 	}
 	result, err := client.Webhooks.Create(ctx, params)
 	if err != nil {
@@ -152,7 +152,7 @@ func main() {
 		URL: "test-url",
 		Events: []helo.WebhookEvent{helo.WebhookEventMessageAccepted, helo.WebhookEventMessageProcessed},
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
-		Enabled: true,
+		Enabled: helo.Bool(true),
 	}
 	result, err := client.Webhooks.Update(ctx, "550e8400-e29b-41d4-a716-446655440000", params)
 	if err != nil {

@@ -68,7 +68,7 @@ func TestWebhooks_Create(t *testing.T) {
 		URL:       "test-url",
 		Events:    []WebhookEvent{WebhookEventMessageAccepted, WebhookEventMessageProcessed},
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
-		Enabled:   true,
+		Enabled:   Bool(true),
 	}
 	result, err := client.Webhooks.Create(context.Background(), params)
 	if err != nil {
@@ -133,7 +133,7 @@ func TestWebhooks_Update(t *testing.T) {
 		URL:       "test-url",
 		Events:    []WebhookEvent{WebhookEventMessageAccepted, WebhookEventMessageProcessed},
 		ChannelID: "550e8400-e29b-41d4-a716-446655440000",
-		Enabled:   true,
+		Enabled:   Bool(true),
 	}
 	result, err := client.Webhooks.Update(context.Background(), "550e8400-e29b-41d4-a716-446655440000", params)
 	if err != nil {

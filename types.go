@@ -35,8 +35,8 @@ type CreateChannelRequest struct {
 
 // CreateChannelTracking is a generated schema type.
 type CreateChannelTracking struct {
-	Links bool `json:"links,omitempty"`
-	Opens bool `json:"opens,omitempty"`
+	Links *bool `json:"links,omitempty"`
+	Opens *bool `json:"opens,omitempty"`
 }
 
 // ValidationError A single field validation error.
@@ -71,8 +71,8 @@ type UpdateChannelRequest struct {
 
 // UpdateChannelTracking is a generated schema type.
 type UpdateChannelTracking struct {
-	Links bool `json:"links,omitempty"`
-	Opens bool `json:"opens,omitempty"`
+	Links *bool `json:"links,omitempty"`
+	Opens *bool `json:"opens,omitempty"`
 }
 
 // ActivityMailAddress is a generated schema type.
@@ -275,7 +275,15 @@ type SendMessageRequest struct {
 }
 
 // SendMessageResponse is a generated schema type.
+//
+// It is one of SendMessageAcceptedResponse, SendMessageFailedResponse, so it carries every variant's
+// fields; those the response didn't include are left at their zero values.
 type SendMessageResponse struct {
+	Status       string   `json:"status,omitempty"`
+	MessageID    string   `json:"messageId,omitempty"`
+	Suppressions []string `json:"suppressions,omitempty"`
+	ErrorCode    string   `json:"errorCode,omitempty"`
+	ErrorMessage string   `json:"errorMessage,omitempty"`
 }
 
 // SendMessageAcceptedResponse is a generated schema type.
@@ -472,7 +480,7 @@ type CreateWebhookRequest struct {
 	Events            []WebhookEvent  `json:"events"`
 	ChannelID         string          `json:"channelId,omitempty"`
 	AdditionalHeaders []WebhookHeader `json:"additionalHeaders,omitempty"`
-	Enabled           bool            `json:"enabled,omitempty"`
+	Enabled           *bool           `json:"enabled,omitempty"`
 }
 
 // WebhookHeader A custom HTTP header to include in webhook deliveries.
@@ -493,7 +501,7 @@ type UpdateWebhookRequest struct {
 	Events            []WebhookEvent  `json:"events,omitempty"`
 	ChannelID         string          `json:"channelId,omitempty"`
 	AdditionalHeaders []WebhookHeader `json:"additionalHeaders,omitempty"`
-	Enabled           bool            `json:"enabled,omitempty"`
+	Enabled           *bool           `json:"enabled,omitempty"`
 }
 
 // WebhookResponse Webhook configuration properties.
@@ -799,14 +807,14 @@ type SendBroadcastRequestTemplate struct {
 	Subject      string         `json:"subject,omitempty"`
 	Html         string         `json:"html,omitempty"`
 	Text         string         `json:"text,omitempty"`
-	InlineStyles bool           `json:"inlineStyles,omitempty"`
+	InlineStyles *bool          `json:"inlineStyles,omitempty"`
 	Data         map[string]any `json:"data,omitempty"`
 }
 
 // SendBroadcastRequestTracking is an inline schema extracted from its parent type.
 type SendBroadcastRequestTracking struct {
-	Opens bool `json:"opens,omitempty"`
-	Links bool `json:"links,omitempty"`
+	Opens *bool `json:"opens,omitempty"`
+	Links *bool `json:"links,omitempty"`
 }
 
 // SendBroadcastRequestMessage is an inline schema extracted from its parent type.
@@ -826,14 +834,14 @@ type SendMessageRequestTemplate struct {
 	Subject      string         `json:"subject,omitempty"`
 	Html         string         `json:"html,omitempty"`
 	Text         string         `json:"text,omitempty"`
-	InlineStyles bool           `json:"inlineStyles,omitempty"`
+	InlineStyles *bool          `json:"inlineStyles,omitempty"`
 	Data         map[string]any `json:"data,omitempty"`
 }
 
 // SendMessageRequestTracking is an inline schema extracted from its parent type.
 type SendMessageRequestTracking struct {
-	Opens bool `json:"opens,omitempty"`
-	Links bool `json:"links,omitempty"`
+	Opens *bool `json:"opens,omitempty"`
+	Links *bool `json:"links,omitempty"`
 }
 
 // BroadcastContentTemplate is an inline schema extracted from its parent type.
