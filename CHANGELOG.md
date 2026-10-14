@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0
+
+- Added `NullFields` to `UpdateWebhookRequest`, to send `channelId` or `additionalHeaders` as null, which
+  removes a webhook's channel scope or custom headers. Leaving a field unset still leaves it unchanged.
+
 ## 1.2.0
 
 - Fixed optional booleans in request types, which could not be set to `false`: with `,omitempty` a

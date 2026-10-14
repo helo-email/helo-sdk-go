@@ -502,6 +502,16 @@ type UpdateWebhookRequest struct {
 	ChannelID         string          `json:"channelId,omitempty"`
 	AdditionalHeaders []WebhookHeader `json:"additionalHeaders,omitempty"`
 	Enabled           *bool           `json:"enabled,omitempty"`
+
+	// NullFields names fields to send as null, which clears them: "channelId", "additionalHeaders".
+	// A field named here is sent as null even if it is also set.
+	NullFields []string `json:"-"`
+}
+
+// MarshalJSON sends the fields named in NullFields as null.
+func (r UpdateWebhookRequest) MarshalJSON() ([]byte, error) {
+	type plain UpdateWebhookRequest // drops this method, so encoding doesn't recurse
+	return marshalWithNulls(plain(r), r.NullFields, "channelId", "additionalHeaders")
 }
 
 // WebhookResponse Webhook configuration properties.
