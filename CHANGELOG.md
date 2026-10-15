@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.1
+
+- Fixed array query parameters whose items are an enum, such as `eventTypes` on `Activity.ListEvents`
+  (`helo activity list-events --event-types`): they were sent as `[bounced complained]` instead of
+  `bounced,complained`.
+
 ## 1.3.0
 
 - Added `NullFields` to `UpdateWebhookRequest`, to send `channelId` or `additionalHeaders` as null, which

@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 	"runtime"
 	"runtime/debug"
 	"strings"
@@ -120,6 +121,20 @@ func (c *Client) request(ctx context.Context, method, path string, out any, opts
 				}
 				q.Set(key, strings.Join(v, ","))
 			default:
+				// Any other slice, such as a []EventType, is comma-joined like a
+				// []string (every array query parameter is explode: false), not
+				// printed as "[a b]".
+				if rv := reflect.ValueOf(v); rv.Kind() == reflect.Slice {
+					if rv.Len() == 0 {
+						continue
+					}
+					items := make([]string, rv.Len())
+					for i := range items {
+						items[i] = fmt.Sprint(rv.Index(i).Interface())
+					}
+					q.Set(key, strings.Join(items, ","))
+					continue
+				}
 				q.Set(key, fmt.Sprintf("%v", v))
 			}
 		}
