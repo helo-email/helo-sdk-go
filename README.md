@@ -77,4 +77,5 @@ case errors.Is(err, helo.ErrSignatureMismatch):
 - [Broadcasts](docs/Broadcasts.md)
 - [Statistics](docs/Statistics.md)
 - [Suppressions](docs/Suppressions.md)
+- [Templates](docs/Templates.md)
 - [Webhooks](docs/Webhooks.md)

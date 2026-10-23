@@ -164,8 +164,9 @@ type MessageDetailsResponse struct {
 
 // CreateDomainRequest is a generated schema type.
 type CreateDomainRequest struct {
-	Name       string   `json:"name"`
-	ChannelIds []string `json:"channelIds,omitempty"`
+	Name                 string   `json:"name"`
+	ChannelIds           []string `json:"channelIds,omitempty"`
+	EnableCustomTracking *bool    `json:"enableCustomTracking,omitempty"`
 }
 
 // DnsRecordResponse is a generated schema type.
@@ -182,6 +183,7 @@ type DnsRecordsResponse struct {
 	DomainKeyActive  *DnsRecordResponse  `json:"domainKeyActive,omitempty"`
 	DomainKeyPending *DnsRecordResponse  `json:"domainKeyPending,omitempty"`
 	ReturnPath       []DnsRecordResponse `json:"returnPath,omitempty"`
+	Tracking         *DnsRecordResponse  `json:"tracking,omitempty"`
 }
 
 // DomainChannelResponse is a generated schema type.
@@ -219,7 +221,8 @@ type PaginatedResponseOfDomainResponse struct {
 
 // UpdateDomainRequest is a generated schema type.
 type UpdateDomainRequest struct {
-	ChannelIds []string `json:"channelIds,omitempty"`
+	ChannelIds           []string `json:"channelIds,omitempty"`
+	EnableCustomTracking *bool    `json:"enableCustomTracking,omitempty"`
 }
 
 // MailAddress is a generated schema type.
@@ -472,6 +475,90 @@ type RemoveSuppressionResult struct {
 	Email   string `json:"email"`
 	Success bool   `json:"success"`
 	Message string `json:"message,omitempty"`
+}
+
+// CreateTemplateRequest At least one of html, mjml or text must be supplied. Supplying both html and mjml in  the same request is rejected - mjml content will be rendered to html. Providing raw html will override any mjml content stored on the template.
+type CreateTemplateRequest struct {
+	Name       string   `json:"name"`
+	Subject    string   `json:"subject"`
+	Html       string   `json:"html,omitempty"`
+	Mjml       string   `json:"mjml,omitempty"`
+	Text       string   `json:"text,omitempty"`
+	ChannelIds []string `json:"channelIds,omitempty"`
+}
+
+// UpdateTemplateRequest Only provided fields are changed - an omitted field leaves the existing value unchanged. Supplying both html and mjml in the same request is rejected, as is an update that would leave the template with no html or text content. Supply version to make the update conditional - without it, the last write wins.
+type UpdateTemplateRequest struct {
+	Name       string   `json:"name,omitempty"`
+	Subject    string   `json:"subject,omitempty"`
+	Html       string   `json:"html,omitempty"`
+	Mjml       string   `json:"mjml,omitempty"`
+	Text       string   `json:"text,omitempty"`
+	ChannelIds []string `json:"channelIds,omitempty"`
+	Version    int64    `json:"version,omitempty"`
+
+	// NullFields names fields to send as null, which clears them: "html", "mjml", "text", "channelIds".
+	// A field named here is sent as null even if it is also set.
+	NullFields []string `json:"-"`
+}
+
+// MarshalJSON sends the fields named in NullFields as null.
+func (r UpdateTemplateRequest) MarshalJSON() ([]byte, error) {
+	type plain UpdateTemplateRequest // drops this method, so encoding doesn't recurse
+	return marshalWithNulls(plain(r), r.NullFields, "html", "mjml", "text", "channelIds")
+}
+
+// RenderTemplateRequest is a generated schema type.
+type RenderTemplateRequest struct {
+	InlineStyles *bool          `json:"inlineStyles,omitempty"`
+	Data         map[string]any `json:"data,omitempty"`
+}
+
+// RenderDraftRequest Supplying both html and mjml in the same request is rejected.
+type RenderDraftRequest struct {
+	Subject      string         `json:"subject"`
+	Html         string         `json:"html,omitempty"`
+	Mjml         string         `json:"mjml,omitempty"`
+	Text         string         `json:"text,omitempty"`
+	InlineStyles *bool          `json:"inlineStyles,omitempty"`
+	Data         map[string]any `json:"data,omitempty"`
+}
+
+// TemplateResponse is a generated schema type.
+type TemplateResponse struct {
+	ID         string    `json:"id"`
+	CreatedAt  time.Time `json:"createdAt"`
+	UpdatedAt  time.Time `json:"updatedAt"`
+	Version    int64     `json:"version"`
+	Name       string    `json:"name"`
+	Subject    string    `json:"subject"`
+	Html       string    `json:"html,omitempty"`
+	Mjml       string    `json:"mjml,omitempty"`
+	Text       string    `json:"text,omitempty"`
+	ChannelIds []string  `json:"channelIds,omitempty"`
+}
+
+// TemplateSummaryResponse is a generated schema type.
+type TemplateSummaryResponse struct {
+	ID         string    `json:"id"`
+	CreatedAt  time.Time `json:"createdAt"`
+	UpdatedAt  time.Time `json:"updatedAt"`
+	Name       string    `json:"name"`
+	Subject    string    `json:"subject"`
+	ChannelIds []string  `json:"channelIds,omitempty"`
+}
+
+// RenderTemplateResponse is a generated schema type.
+type RenderTemplateResponse struct {
+	Subject string `json:"subject"`
+	Html    string `json:"html,omitempty"`
+	Text    string `json:"text,omitempty"`
+}
+
+// PaginatedResponseOfTemplateSummaryResponse is a generated schema type.
+type PaginatedResponseOfTemplateSummaryResponse struct {
+	TotalCount int                       `json:"totalCount"`
+	Results    []TemplateSummaryResponse `json:"results"`
 }
 
 // CreateWebhookRequest Request body for creating a new webhook.

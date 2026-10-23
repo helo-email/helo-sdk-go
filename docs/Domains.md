@@ -79,6 +79,7 @@ func main() {
 	params := &helo.CreateDomainRequest{
 		Name: "test-name",
 		ChannelIds: []string{"550e8400-e29b-41d4-a716-446655440000"},
+		EnableCustomTracking: helo.Bool(true),
 	}
 	result, err := client.Domains.Create(ctx, params)
 	if err != nil {
@@ -150,6 +151,7 @@ func main() {
 
 	params := &helo.UpdateDomainRequest{
 		ChannelIds: []string{"550e8400-e29b-41d4-a716-446655440000"},
+		EnableCustomTracking: helo.Bool(true),
 	}
 	result, err := client.Domains.Update(ctx, "550e8400-e29b-41d4-a716-446655440000", params)
 	if err != nil {

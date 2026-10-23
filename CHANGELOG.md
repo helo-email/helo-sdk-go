@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0
+
+- Added sending template management
+- Added support for custom tracking domains
+
 ## 1.3.1
 
 - Fixed array query parameters whose items are an enum, such as `eventTypes` on `Activity.ListEvents`

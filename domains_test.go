@@ -66,8 +66,9 @@ func TestDomains_Create(t *testing.T) {
 	client := NewHelo("test-token-123", WithBaseURL(server.URL))
 
 	params := &CreateDomainRequest{
-		Name:       "test-name",
-		ChannelIds: []string{"550e8400-e29b-41d4-a716-446655440000"},
+		Name:                 "test-name",
+		ChannelIds:           []string{"550e8400-e29b-41d4-a716-446655440000"},
+		EnableCustomTracking: Bool(true),
 	}
 	result, err := client.Domains.Create(context.Background(), params)
 	if err != nil {
@@ -129,7 +130,8 @@ func TestDomains_Update(t *testing.T) {
 	client := NewHelo("test-token-123", WithBaseURL(server.URL))
 
 	params := &UpdateDomainRequest{
-		ChannelIds: []string{"550e8400-e29b-41d4-a716-446655440000"},
+		ChannelIds:           []string{"550e8400-e29b-41d4-a716-446655440000"},
+		EnableCustomTracking: Bool(true),
 	}
 	result, err := client.Domains.Update(context.Background(), "550e8400-e29b-41d4-a716-446655440000", params)
 	if err != nil {

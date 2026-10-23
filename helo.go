@@ -17,6 +17,7 @@ type Helo struct {
 	Broadcasts   *BroadcastsService
 	Statistics   *StatisticsService
 	Suppressions *SuppressionsService
+	Templates    *TemplatesService
 	Webhooks     *WebhooksService
 }
 
@@ -61,6 +62,7 @@ func NewHelo(apiKey string, opts ...HeloOption) *Helo {
 	c.Broadcasts = &BroadcastsService{client: c.client}
 	c.Statistics = &StatisticsService{client: c.client}
 	c.Suppressions = &SuppressionsService{client: c.client}
+	c.Templates = &TemplatesService{client: c.client}
 	c.Webhooks = &WebhooksService{client: c.client}
 
 	return c
