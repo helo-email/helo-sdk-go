@@ -2,22 +2,22 @@
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**List**](Templates.md#list) | **GET** /templates | List operation |
-| [**Create**](Templates.md#create) | **POST** /templates | Create operation |
-| [**RenderDraft**](Templates.md#renderdraft) | **POST** /templates/render | RenderDraft operation |
-| [**Retrieve**](Templates.md#retrieve) | **GET** /templates/{id} | Retrieve operation |
-| [**Update**](Templates.md#update) | **PATCH** /templates/{id} | Update operation |
-| [**Delete**](Templates.md#delete) | **DELETE** /templates/{id} | Delete operation |
-| [**Render**](Templates.md#render) | **POST** /templates/{id}/render | Render operation |
+| [**List**](Templates.md#list) | **GET** /templates | List all templates |
+| [**Create**](Templates.md#create) | **POST** /templates | Create a template |
+| [**RenderDraft**](Templates.md#renderdraft) | **POST** /templates/render | Render template content |
+| [**Retrieve**](Templates.md#retrieve) | **GET** /templates/{id} | Retrieve a template |
+| [**Update**](Templates.md#update) | **PATCH** /templates/{id} | Update a template |
+| [**Delete**](Templates.md#delete) | **DELETE** /templates/{id} | Delete a template |
+| [**Render**](Templates.md#render) | **POST** /templates/{id}/render | Render a template |
 
 
 ## List
 
 > List(ctx, params) (*PaginatedResponseOfTemplateSummaryResponse, error)
 
-List operation
+List all templates
 
-Fetch a paginated list of templates.
+Retrieves a paginated list of templates, optionally filtered by name or channel.
 
 ### Example
 
@@ -55,9 +55,9 @@ func main() {
 
 > Create(ctx, params) (*TemplateResponse, error)
 
-Create operation
+Create a template
 
-Create a new template.
+Creates a new template from HTML, MJML, or plain-text content. MJML is compiled to HTML when the template is saved.
 
 ### Example
 
@@ -97,9 +97,9 @@ func main() {
 
 > RenderDraft(ctx, params) (*RenderTemplateResponse, error)
 
-RenderDraft operation
+Render template content
 
-Render ad-hoc template content (Subject/Html/Text) with sample data, without persisting anything.
+Renders unsaved template content (subject, HTML or MJML, and text) with sample data, without persisting anything.
 
 ### Example
 
@@ -138,9 +138,9 @@ func main() {
 
 > Retrieve(ctx, id) (*TemplateResponse, error)
 
-Retrieve operation
+Retrieve a template
 
-Fetch a single template.
+Fetches the details and content of a specific template.
 
 ### Example
 
@@ -172,9 +172,9 @@ func main() {
 
 > Update(ctx, id, params) (*TemplateResponse, error)
 
-Update operation
+Update a template
 
-Update an existing template.
+Modifies an existing template. Only the provided fields are changed.
 
 ### Example
 
@@ -215,9 +215,9 @@ func main() {
 
 > Delete(ctx, id) error
 
-Delete operation
+Delete a template
 
-Delete a template.
+Permanently removes a template. This action cannot be undone.
 
 ### Example
 
@@ -247,9 +247,9 @@ func main() {
 
 > Render(ctx, id, params) (*RenderTemplateResponse, error)
 
-Render operation
+Render a template
 
-Render a saved template with sample data.
+Renders a saved template with sample data, to preview the output before sending.
 
 ### Example
 

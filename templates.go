@@ -10,7 +10,7 @@ type TemplatesService struct {
 	client *Client
 }
 
-// List List operation
+// List List all templates
 func (s *TemplatesService) List(ctx context.Context, params *TemplatesListParams) (*PaginatedResponseOfTemplateSummaryResponse, error) {
 	out := new(PaginatedResponseOfTemplateSummaryResponse)
 	if err := s.client.request(ctx, "GET", "/templates", out, withQuery(params.toQuery())); err != nil {
@@ -19,7 +19,7 @@ func (s *TemplatesService) List(ctx context.Context, params *TemplatesListParams
 	return out, nil
 }
 
-// Create Create operation
+// Create Create a template
 func (s *TemplatesService) Create(ctx context.Context, params *CreateTemplateRequest) (*TemplateResponse, error) {
 	out := new(TemplateResponse)
 	if err := s.client.request(ctx, "POST", "/templates", out, withBody(params)); err != nil {
@@ -28,7 +28,7 @@ func (s *TemplatesService) Create(ctx context.Context, params *CreateTemplateReq
 	return out, nil
 }
 
-// RenderDraft RenderDraft operation
+// RenderDraft Render template content
 func (s *TemplatesService) RenderDraft(ctx context.Context, params *RenderDraftRequest) (*RenderTemplateResponse, error) {
 	out := new(RenderTemplateResponse)
 	if err := s.client.request(ctx, "POST", "/templates/render", out, withBody(params)); err != nil {
@@ -37,7 +37,7 @@ func (s *TemplatesService) RenderDraft(ctx context.Context, params *RenderDraftR
 	return out, nil
 }
 
-// Retrieve Retrieve operation
+// Retrieve Retrieve a template
 func (s *TemplatesService) Retrieve(ctx context.Context, id string) (*TemplateResponse, error) {
 	out := new(TemplateResponse)
 	if err := s.client.request(ctx, "GET", fmt.Sprintf("/templates/%v", id), out); err != nil {
@@ -46,7 +46,7 @@ func (s *TemplatesService) Retrieve(ctx context.Context, id string) (*TemplateRe
 	return out, nil
 }
 
-// Update Update operation
+// Update Update a template
 func (s *TemplatesService) Update(ctx context.Context, id string, params *UpdateTemplateRequest) (*TemplateResponse, error) {
 	out := new(TemplateResponse)
 	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/templates/%v", id), out, withBody(params)); err != nil {
@@ -55,7 +55,7 @@ func (s *TemplatesService) Update(ctx context.Context, id string, params *Update
 	return out, nil
 }
 
-// Delete Delete operation
+// Delete Delete a template
 func (s *TemplatesService) Delete(ctx context.Context, id string) error {
 	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/templates/%v", id), nil); err != nil {
 		return err
@@ -63,7 +63,7 @@ func (s *TemplatesService) Delete(ctx context.Context, id string) error {
 	return nil
 }
 
-// Render Render operation
+// Render Render a template
 func (s *TemplatesService) Render(ctx context.Context, id string, params *RenderTemplateRequest) (*RenderTemplateResponse, error) {
 	out := new(RenderTemplateResponse)
 	if err := s.client.request(ctx, "POST", fmt.Sprintf("/templates/%v/render", id), out, withBody(params)); err != nil {
