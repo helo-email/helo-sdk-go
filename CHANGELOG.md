@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.5.0
+
+- Added automatic retries. A request that fails with a network error, a timeout, or a
+  `408`, `429` or `5xx` response is retried up to 2 times with backoff, but only when sending it
+  again can't do anything twice. Pass `helo.WithMaxRetries(n)` to `helo.NewHelo` to change how
+  many, or `0` to disable them.
+- Added a timeout: each attempt is abandoned after 30 seconds (`helo.DefaultTimeout`) and
+  retried. Before, the default client had no timeout, so a stalled connection could block
+  forever. A client passed to `helo.WithHTTPClient` keeps its own `Timeout`.
+- `SendTransactional`, `SendTransactionalBatch`, `SendBroadcast` and `SendBroadcastMessage` now
+  generate an idempotency key when `IdempotencyKey` is empty, and send the same key on every
+  retry, so a send whose response was lost is never sent twice.
+
 ## 1.4.0
 
 - Added sending template management

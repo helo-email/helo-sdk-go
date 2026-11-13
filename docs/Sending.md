@@ -122,7 +122,7 @@ func main() {
 
 	params := &helo.SendBroadcastRequest{
 		From: helo.MailAddress{Email: "test@example.com", Name: "test-name"},
-		Template: helo.SendBroadcastRequestTemplate{ID: "550e8400-e29b-41d4-a716-446655440000", Subject: "test-subject", Html: "test-html", Text: "test-text", InlineStyles: helo.Bool(true)},
+		Template: helo.SendBroadcastRequestTemplate{Subject: "Hello, {{name}}", Html: "<html><body><h1>Hi {{name}}.</h1><p>This is a broadcast, delivered with <3 by Helo.</p></body></html>", Text: "Hi {{name}}. This is a broadcast, delivered with <3 by Helo.", InlineStyles: helo.Bool(true)},
 		Tags: []string{"example1", "example2"},
 		Messages: []helo.SendBroadcastRequestMessage{{To: []helo.MailAddress{{Email: "test@example.com", Name: "test-name"}}, Tags: []string{"example1", "example2"}}},
 	}

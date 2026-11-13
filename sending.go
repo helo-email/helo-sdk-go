@@ -54,10 +54,12 @@ type SendingSendTransactionalOptions struct {
 }
 
 // toHeaders converts the options struct into a header map for the HTTP layer.
-// A nil receiver or zero-valued fields contribute no headers.
+// A nil receiver or zero-valued fields contribute no headers, except the
+// idempotency key, which is generated when not given so a retry is recognized
+// as the same request.
 func (o *SendingSendTransactionalOptions) toHeaders() map[string]string {
 	if o == nil {
-		return nil
+		o = &SendingSendTransactionalOptions{}
 	}
 	h := map[string]string{}
 	if o.ChannelID != "" {
@@ -65,6 +67,8 @@ func (o *SendingSendTransactionalOptions) toHeaders() map[string]string {
 	}
 	if o.IdempotencyKey != "" {
 		h["X-Helo-Idempotency-Key"] = o.IdempotencyKey
+	} else {
+		h["X-Helo-Idempotency-Key"] = idempotencyKey()
 	}
 	return h
 }
@@ -78,10 +82,12 @@ type SendingSendTransactionalBatchOptions struct {
 }
 
 // toHeaders converts the options struct into a header map for the HTTP layer.
-// A nil receiver or zero-valued fields contribute no headers.
+// A nil receiver or zero-valued fields contribute no headers, except the
+// idempotency key, which is generated when not given so a retry is recognized
+// as the same request.
 func (o *SendingSendTransactionalBatchOptions) toHeaders() map[string]string {
 	if o == nil {
-		return nil
+		o = &SendingSendTransactionalBatchOptions{}
 	}
 	h := map[string]string{}
 	if o.ChannelID != "" {
@@ -89,6 +95,8 @@ func (o *SendingSendTransactionalBatchOptions) toHeaders() map[string]string {
 	}
 	if o.IdempotencyKey != "" {
 		h["X-Helo-Idempotency-Key"] = o.IdempotencyKey
+	} else {
+		h["X-Helo-Idempotency-Key"] = idempotencyKey()
 	}
 	return h
 }
@@ -102,10 +110,12 @@ type SendingSendBroadcastOptions struct {
 }
 
 // toHeaders converts the options struct into a header map for the HTTP layer.
-// A nil receiver or zero-valued fields contribute no headers.
+// A nil receiver or zero-valued fields contribute no headers, except the
+// idempotency key, which is generated when not given so a retry is recognized
+// as the same request.
 func (o *SendingSendBroadcastOptions) toHeaders() map[string]string {
 	if o == nil {
-		return nil
+		o = &SendingSendBroadcastOptions{}
 	}
 	h := map[string]string{}
 	if o.ChannelID != "" {
@@ -113,6 +123,8 @@ func (o *SendingSendBroadcastOptions) toHeaders() map[string]string {
 	}
 	if o.IdempotencyKey != "" {
 		h["X-Helo-Idempotency-Key"] = o.IdempotencyKey
+	} else {
+		h["X-Helo-Idempotency-Key"] = idempotencyKey()
 	}
 	return h
 }
@@ -126,10 +138,12 @@ type SendingSendBroadcastMessageOptions struct {
 }
 
 // toHeaders converts the options struct into a header map for the HTTP layer.
-// A nil receiver or zero-valued fields contribute no headers.
+// A nil receiver or zero-valued fields contribute no headers, except the
+// idempotency key, which is generated when not given so a retry is recognized
+// as the same request.
 func (o *SendingSendBroadcastMessageOptions) toHeaders() map[string]string {
 	if o == nil {
-		return nil
+		o = &SendingSendBroadcastMessageOptions{}
 	}
 	h := map[string]string{}
 	if o.ChannelID != "" {
@@ -137,6 +151,8 @@ func (o *SendingSendBroadcastMessageOptions) toHeaders() map[string]string {
 	}
 	if o.IdempotencyKey != "" {
 		h["X-Helo-Idempotency-Key"] = o.IdempotencyKey
+	} else {
+		h["X-Helo-Idempotency-Key"] = idempotencyKey()
 	}
 	return h
 }

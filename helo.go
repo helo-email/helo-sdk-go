@@ -29,9 +29,16 @@ func WithBaseURL(baseURL string) HeloOption {
 	return func(c *Helo) { c.client.BaseURL = baseURL }
 }
 
-// WithHTTPClient sets a custom *http.Client used for all requests.
+// WithHTTPClient sets a custom *http.Client used for all requests. Its Timeout
+// replaces DefaultTimeout, so set one: zero means none.
 func WithHTTPClient(httpClient *http.Client) HeloOption {
 	return func(c *Helo) { c.client.HTTPClient = httpClient }
+}
+
+// WithMaxRetries sets how many times a failed request is retried (default
+// DefaultMaxRetries); 0 disables retries. See Client for which requests are retried.
+func WithMaxRetries(maxRetries int) HeloOption {
+	return func(c *Helo) { c.client.MaxRetries = maxRetries }
 }
 
 // WithUserAgent replaces the SDK's own User-Agent, so a program built on top of
@@ -46,8 +53,9 @@ func NewHelo(apiKey string, opts ...HeloOption) *Helo {
 		client: &Client{
 			BaseURL:    DefaultBaseURL,
 			APIKey:     apiKey,
-			HTTPClient: http.DefaultClient,
+			HTTPClient: defaultHTTPClient,
 			UserAgent:  defaultUserAgent,
+			MaxRetries: DefaultMaxRetries,
 		},
 	}
 
