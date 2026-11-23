@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0
+
+- Added `validation` parameter to batch sending requests, allowing control over the processing behaviour of partial failures.
+
 ## 1.5.0
 
 - Added automatic retries. A request that fails with a network error, a timeout, or a

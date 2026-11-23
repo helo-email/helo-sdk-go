@@ -80,6 +80,7 @@ func main() {
 	ctx := context.Background()
 
 	params := &helo.SendMessageBatchRequest{
+		Validation: helo.BatchValidationModeStrict,
 		Requests: []helo.SendMessageRequest{{From: helo.MailAddress{Email: "from@yourdomain.com", Name: "From name"}, To: []helo.MailAddress{{Email: "to@example.com", Name: "To name"}}, Subject: "Hello from Helo", Html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", Text: "This is a test message, delivered with <3 by Helo.", Tags: []string{"welcome", "onboarding"}}},
 	}
 	opts := &helo.SendingSendTransactionalBatchOptions{

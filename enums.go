@@ -150,6 +150,22 @@ func AllAttachmentDispositionValues() []AttachmentDisposition {
 	}
 }
 
+// BatchValidationMode is a string-based enum.
+type BatchValidationMode string
+
+const (
+	BatchValidationModeStrict  BatchValidationMode = "strict"
+	BatchValidationModeRelaxed BatchValidationMode = "relaxed"
+)
+
+// AllBatchValidationModeValues returns all valid BatchValidationMode values.
+func AllBatchValidationModeValues() []BatchValidationMode {
+	return []BatchValidationMode{
+		BatchValidationModeStrict,
+		BatchValidationModeRelaxed,
+	}
+}
+
 // SuppressionReason is a string-based enum.
 type SuppressionReason string
 

@@ -282,11 +282,12 @@ type SendMessageRequest struct {
 // It is one of SendMessageAcceptedResponse, SendMessageFailedResponse, so it carries every variant's
 // fields; those the response didn't include are left at their zero values.
 type SendMessageResponse struct {
-	Status       string   `json:"status,omitempty"`
-	MessageID    string   `json:"messageId,omitempty"`
-	Suppressions []string `json:"suppressions,omitempty"`
-	ErrorCode    string   `json:"errorCode,omitempty"`
-	ErrorMessage string   `json:"errorMessage,omitempty"`
+	Status       string         `json:"status,omitempty"`
+	MessageID    string         `json:"messageId,omitempty"`
+	Suppressions []string       `json:"suppressions,omitempty"`
+	ErrorCode    string         `json:"errorCode,omitempty"`
+	ErrorMessage string         `json:"errorMessage,omitempty"`
+	Errors       map[string]any `json:"errors,omitempty"`
 }
 
 // SendMessageAcceptedResponse is a generated schema type.
@@ -298,14 +299,16 @@ type SendMessageAcceptedResponse struct {
 
 // SendMessageFailedResponse is a generated schema type.
 type SendMessageFailedResponse struct {
-	Status       string `json:"status"`
-	ErrorCode    string `json:"errorCode"`
-	ErrorMessage string `json:"errorMessage"`
+	Status       string         `json:"status"`
+	ErrorCode    string         `json:"errorCode"`
+	ErrorMessage string         `json:"errorMessage"`
+	Errors       map[string]any `json:"errors,omitempty"`
 }
 
 // SendMessageBatchRequest is a generated schema type.
 type SendMessageBatchRequest struct {
-	Requests []SendMessageRequest `json:"requests"`
+	Validation BatchValidationMode  `json:"validation,omitempty"`
+	Requests   []SendMessageRequest `json:"requests"`
 }
 
 // SendMessageBatchResponse is a generated schema type.
