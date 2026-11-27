@@ -40,7 +40,7 @@ func (s *TemplatesService) RenderDraft(ctx context.Context, params *RenderDraftR
 // Retrieve Retrieve a template
 func (s *TemplatesService) Retrieve(ctx context.Context, id string) (*TemplateResponse, error) {
 	out := new(TemplateResponse)
-	if err := s.client.request(ctx, "GET", fmt.Sprintf("/templates/%v", id), out); err != nil {
+	if err := s.client.request(ctx, "GET", fmt.Sprintf("/templates/%s", pathParam(id)), out); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -49,7 +49,7 @@ func (s *TemplatesService) Retrieve(ctx context.Context, id string) (*TemplateRe
 // Update Update a template
 func (s *TemplatesService) Update(ctx context.Context, id string, params *UpdateTemplateRequest) (*TemplateResponse, error) {
 	out := new(TemplateResponse)
-	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/templates/%v", id), out, withBody(params)); err != nil {
+	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/templates/%s", pathParam(id)), out, withBody(params)); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -57,7 +57,7 @@ func (s *TemplatesService) Update(ctx context.Context, id string, params *Update
 
 // Delete Delete a template
 func (s *TemplatesService) Delete(ctx context.Context, id string) error {
-	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/templates/%v", id), nil); err != nil {
+	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/templates/%s", pathParam(id)), nil); err != nil {
 		return err
 	}
 	return nil
@@ -66,7 +66,7 @@ func (s *TemplatesService) Delete(ctx context.Context, id string) error {
 // Render Render a template
 func (s *TemplatesService) Render(ctx context.Context, id string, params *RenderTemplateRequest) (*RenderTemplateResponse, error) {
 	out := new(RenderTemplateResponse)
-	if err := s.client.request(ctx, "POST", fmt.Sprintf("/templates/%v/render", id), out, withBody(params)); err != nil {
+	if err := s.client.request(ctx, "POST", fmt.Sprintf("/templates/%s/render", pathParam(id)), out, withBody(params)); err != nil {
 		return nil, err
 	}
 	return out, nil

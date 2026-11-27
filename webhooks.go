@@ -31,7 +31,7 @@ func (s *WebhooksService) Create(ctx context.Context, params *CreateWebhookReque
 // Retrieve Retrieve a webhook
 func (s *WebhooksService) Retrieve(ctx context.Context, id string) (*WebhookResponse, error) {
 	out := new(WebhookResponse)
-	if err := s.client.request(ctx, "GET", fmt.Sprintf("/webhooks/%v", id), out); err != nil {
+	if err := s.client.request(ctx, "GET", fmt.Sprintf("/webhooks/%s", pathParam(id)), out); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -40,7 +40,7 @@ func (s *WebhooksService) Retrieve(ctx context.Context, id string) (*WebhookResp
 // Update Update a webhook
 func (s *WebhooksService) Update(ctx context.Context, id string, params *UpdateWebhookRequest) (*WebhookResponse, error) {
 	out := new(WebhookResponse)
-	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/webhooks/%v", id), out, withBody(params)); err != nil {
+	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/webhooks/%s", pathParam(id)), out, withBody(params)); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -48,7 +48,7 @@ func (s *WebhooksService) Update(ctx context.Context, id string, params *UpdateW
 
 // Delete Delete a webhook
 func (s *WebhooksService) Delete(ctx context.Context, id string) error {
-	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/webhooks/%v", id), nil); err != nil {
+	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/webhooks/%s", pathParam(id)), nil); err != nil {
 		return err
 	}
 	return nil
@@ -57,7 +57,7 @@ func (s *WebhooksService) Delete(ctx context.Context, id string) error {
 // RegenerateSigningKey Regenerate webhook signing key
 func (s *WebhooksService) RegenerateSigningKey(ctx context.Context, id string) (*WebhookResponse, error) {
 	out := new(WebhookResponse)
-	if err := s.client.request(ctx, "POST", fmt.Sprintf("/webhooks/%v/regenerate-signing-key", id), out); err != nil {
+	if err := s.client.request(ctx, "POST", fmt.Sprintf("/webhooks/%s/regenerate-signing-key", pathParam(id)), out); err != nil {
 		return nil, err
 	}
 	return out, nil

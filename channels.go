@@ -31,7 +31,7 @@ func (s *ChannelsService) Create(ctx context.Context, params *CreateChannelReque
 // Retrieve Retrieve a channel
 func (s *ChannelsService) Retrieve(ctx context.Context, id string) (*ChannelDetailsResponse, error) {
 	out := new(ChannelDetailsResponse)
-	if err := s.client.request(ctx, "GET", fmt.Sprintf("/channels/%v", id), out); err != nil {
+	if err := s.client.request(ctx, "GET", fmt.Sprintf("/channels/%s", pathParam(id)), out); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -40,7 +40,7 @@ func (s *ChannelsService) Retrieve(ctx context.Context, id string) (*ChannelDeta
 // Update Update a channel
 func (s *ChannelsService) Update(ctx context.Context, id string, params *UpdateChannelRequest) (*ChannelDetailsResponse, error) {
 	out := new(ChannelDetailsResponse)
-	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/channels/%v", id), out, withBody(params)); err != nil {
+	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/channels/%s", pathParam(id)), out, withBody(params)); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -48,7 +48,7 @@ func (s *ChannelsService) Update(ctx context.Context, id string, params *UpdateC
 
 // Delete Delete a channel
 func (s *ChannelsService) Delete(ctx context.Context, id string) error {
-	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/channels/%v", id), nil); err != nil {
+	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/channels/%s", pathParam(id)), nil); err != nil {
 		return err
 	}
 	return nil

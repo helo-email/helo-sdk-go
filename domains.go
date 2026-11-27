@@ -31,7 +31,7 @@ func (s *DomainsService) Create(ctx context.Context, params *CreateDomainRequest
 // Retrieve Retrieve a domain
 func (s *DomainsService) Retrieve(ctx context.Context, id string) (*DomainWithDnsResponse, error) {
 	out := new(DomainWithDnsResponse)
-	if err := s.client.request(ctx, "GET", fmt.Sprintf("/domains/%v", id), out); err != nil {
+	if err := s.client.request(ctx, "GET", fmt.Sprintf("/domains/%s", pathParam(id)), out); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -40,7 +40,7 @@ func (s *DomainsService) Retrieve(ctx context.Context, id string) (*DomainWithDn
 // Update Update a domain
 func (s *DomainsService) Update(ctx context.Context, id string, params *UpdateDomainRequest) (*DomainResponse, error) {
 	out := new(DomainResponse)
-	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/domains/%v", id), out, withBody(params)); err != nil {
+	if err := s.client.request(ctx, "PATCH", fmt.Sprintf("/domains/%s", pathParam(id)), out, withBody(params)); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -48,7 +48,7 @@ func (s *DomainsService) Update(ctx context.Context, id string, params *UpdateDo
 
 // Delete Delete a domain
 func (s *DomainsService) Delete(ctx context.Context, id string) error {
-	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/domains/%v", id), nil); err != nil {
+	if err := s.client.request(ctx, "DELETE", fmt.Sprintf("/domains/%s", pathParam(id)), nil); err != nil {
 		return err
 	}
 	return nil
@@ -57,7 +57,7 @@ func (s *DomainsService) Delete(ctx context.Context, id string) error {
 // Verify Verify a domain
 func (s *DomainsService) Verify(ctx context.Context, id string) (*DnsRecordsResponse, error) {
 	out := new(DnsRecordsResponse)
-	if err := s.client.request(ctx, "POST", fmt.Sprintf("/domains/%v/verify", id), out); err != nil {
+	if err := s.client.request(ctx, "POST", fmt.Sprintf("/domains/%s/verify", pathParam(id)), out); err != nil {
 		return nil, err
 	}
 	return out, nil
@@ -66,7 +66,7 @@ func (s *DomainsService) Verify(ctx context.Context, id string) (*DnsRecordsResp
 // RotateKey Rotate a domain key
 func (s *DomainsService) RotateKey(ctx context.Context, id string) (*DnsRecordResponse, error) {
 	out := new(DnsRecordResponse)
-	if err := s.client.request(ctx, "POST", fmt.Sprintf("/domains/%v/rotate-key", id), out); err != nil {
+	if err := s.client.request(ctx, "POST", fmt.Sprintf("/domains/%s/rotate-key", pathParam(id)), out); err != nil {
 		return nil, err
 	}
 	return out, nil

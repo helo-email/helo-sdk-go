@@ -138,6 +138,11 @@ func withHeaders(headers map[string]string) requestOption {
 	return func(o *requestOptions) { o.headers = headers }
 }
 
+// pathParam percent-encodes a path parameter so it stays one path segment.
+func pathParam(value any) string {
+	return url.PathEscape(fmt.Sprint(value))
+}
+
 // request performs an HTTP request and decodes the JSON response into out (if non-nil).
 func (c *Client) request(ctx context.Context, method, path string, out any, opts ...requestOption) error {
 	options := &requestOptions{}

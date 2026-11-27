@@ -32,7 +32,7 @@ func (s *ActivityService) ListMessages(ctx context.Context, params *ActivityList
 // RetrieveMessage Retrieve message details
 func (s *ActivityService) RetrieveMessage(ctx context.Context, id string) (*MessageDetailsResponse, error) {
 	out := new(MessageDetailsResponse)
-	if err := s.client.request(ctx, "GET", fmt.Sprintf("/activity/messages/%v", id), out); err != nil {
+	if err := s.client.request(ctx, "GET", fmt.Sprintf("/activity/messages/%s", pathParam(id)), out); err != nil {
 		return nil, err
 	}
 	return out, nil
